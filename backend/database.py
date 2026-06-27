@@ -4,7 +4,8 @@ from sqlalchemy.orm import sessionmaker
 import os
 
 # Use DATABASE_URL from environment (Render sets this), fallback to SQLite for local dev
-DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///./prepwise.db")
+import os
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./prepwise.db")
 
 # Render uses "postgres://" but SQLAlchemy needs "postgresql://"
 if DATABASE_URL.startswith("postgres://"):
