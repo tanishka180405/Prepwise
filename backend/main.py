@@ -15,9 +15,29 @@ from routers import auth, questions, ats
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
+
+    # Auto-seed questions if the database is empty
+    from database import SessionLocal
+    from models.question import Question
+    db = SessionLocal()
+    try:
+        count = db.query(Question).count()
+        if count == 0:
+            print("📦 Database empty — auto-seeding questions...")
+            from seed import QUESTIONS
+            for q in QUESTIONS:
+                db.add(Question(**q))
+            db.commit()
+            print(f"✅ Seeded {len(QUESTIONS)} questions successfully.")
+        else:
+            print(f"📊 {count} questions already in database.")
+    except Exception as e:
+        print(f"⚠️ Auto-seed failed: {e}")
+        db.rollback()
+    finally:
+        db.close()
+
     print(f"✅ PrepWise API started — {settings.APP_NAME} v{settings.APP_VERSION}")
-    print(f"🌐 Open your website at: http://localhost:8000")
-    print(f"📖 API docs at:          http://localhost:8000/docs")
     yield
     print("PrepWise API shutting down.")
 
