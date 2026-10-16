@@ -1,4 +1,4 @@
-# Python
+# ── Python ────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *.pyo
@@ -6,28 +6,61 @@ __pycache__/
 dist/
 build/
 *.egg
+*.whl
 
-# Virtual environments
+# ── Virtual environments ─────────────────────────────
 venv/
 .venv/
 env/
 
-# Environment variables
-.env
+# ── Environment variables (any directory) ────────────
+**/.env
+**/.env.*
+!**/.env.example
 
-# Database
+# ── Secrets & credentials ────────────────────────────
+*.pem
+*.key
+*.crt
+*.p12
+
+# ── Database ─────────────────────────────────────────
 *.db
 *.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
 
-# IDE
+# ── IDE & Editors ────────────────────────────────────
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.project
+.classpath
+.settings/
 
-# OS
+# ── OS ───────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+Desktop.ini
+ehthumbs.db
 
-# Logs
+# ── Logs ─────────────────────────────────────────────
 *.log
+npm-debug.log*
+
+# ── Node (in case frontend evolves) ──────────────────
+node_modules/
+package-lock.json
+
+# ── Docker volumes ───────────────────────────────────
+postgres_data/
+redis_data/
+
+# ── Misc ─────────────────────────────────────────────
+*.bak
+*.tmp
+*.temp
+.cache/

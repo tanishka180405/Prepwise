@@ -2,17 +2,26 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional
 from jose import jwt
 import hashlib
+import bcrypt
 
 from config import settings
 from sqlalchemy.orm import Session
 
 
-# Simple SHA256 hash — no bcrypt, no size limits, no errors
+# New passwords use bcrypt; existing SHA-256 hashes are upgraded on login.
+
+
 def hash_password(password: str) -> str:
-    return hashlib.sha256(password.encode()).hexdigest()
+    return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
 
 def verify_password(plain: str, hashed: str) -> bool:
+    # Legacy SHA-256 hashes remain valid until the user's next login.
+    if hashed.startswith("$2"):
+        try:
+            return bcrypt.checkpw(plain.encode("utf-8"), hashed.encode("utf-8"))
+        except ValueError:
+            return False
     return hashlib.sha256(plain.encode()).hexdigest() == hashed
 
 
@@ -47,4 +56,7 @@ def authenticate_user(db: Session, email: str, password: str):
         return None
     if not verify_password(password, user.hashed_password):
         return None
+    if not user.hashed_password.startswith("$2"):
+        user.hashed_password = hash_password(password)
+        db.commit()
     return user

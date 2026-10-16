@@ -1,5 +1,4 @@
-from sqlalchemy import Column, String, Text, Boolean, DateTime, ForeignKey, Integer
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Column, String, Text, Boolean, DateTime, ForeignKey, Integer, Uuid
 from sqlalchemy.sql import func
 import uuid
 
@@ -9,7 +8,7 @@ from database import Base
 class Question(Base):
     __tablename__ = "questions"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
     text = Column(Text, nullable=False)
     answer = Column(Text, nullable=False)
 
@@ -34,8 +33,8 @@ class UserQuestion(Base):
     """Tracks which questions a user has marked as done."""
     __tablename__ = "user_questions"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
-    question_id = Column(UUID(as_uuid=True), ForeignKey("questions.id", ondelete="CASCADE"), nullable=False)
+    id = Column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = Column(Uuid(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    question_id = Column(Uuid(as_uuid=True), ForeignKey("questions.id", ondelete="CASCADE"), nullable=False)
     done = Column(Boolean, default=True)
     marked_at = Column(DateTime(timezone=True), server_default=func.now())

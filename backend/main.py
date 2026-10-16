@@ -16,28 +16,27 @@ from routers import auth, questions, ats
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
 
-    # Auto-seed questions if the database is empty
+    # Add any newly shipped seed questions without removing a user's existing data.
     from database import SessionLocal
     from models.question import Question
     db = SessionLocal()
     try:
-        count = db.query(Question).count()
-        if count == 0:
-            print("📦 Database empty — auto-seeding questions...")
-            from seed import QUESTIONS
-            for q in QUESTIONS:
-                db.add(Question(**q))
+        from seed import QUESTIONS
+        existing_texts = {text for (text,) in db.query(Question.text).all()}
+        new_questions = [q for q in QUESTIONS if q["text"] not in existing_texts]
+        if new_questions:
+            db.add_all([Question(**q) for q in new_questions])
             db.commit()
-            print(f"✅ Seeded {len(QUESTIONS)} questions successfully.")
+            print(f"Added {len(new_questions)} question(s); {len(QUESTIONS)} available in the seed bank.")
         else:
-            print(f"📊 {count} questions already in database.")
+            print(f"Question bank is current ({len(existing_texts)} questions).")
     except Exception as e:
-        print(f"⚠️ Auto-seed failed: {e}")
+        print(f"Auto-seed failed: {e}")
         db.rollback()
     finally:
         db.close()
 
-    print(f"✅ PrepWise API started — {settings.APP_NAME} v{settings.APP_VERSION}")
+    print(f"PrepWise API started - {settings.APP_NAME} v{settings.APP_VERSION}")
     yield
     print("PrepWise API shutting down.")
 
@@ -58,7 +57,6 @@ app.add_middleware(
         "http://localhost:5500",
         "http://127.0.0.1:5500",
         settings.FRONTEND_URL,
-        "*",
     ],
     allow_credentials=True,
     allow_methods=["*"],

@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import func, text
 from typing import Optional, List
+from uuid import UUID
 from pydantic import BaseModel
 
 from database import get_db
@@ -86,13 +87,18 @@ def mark_done(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    question = db.query(Question).filter(Question.id == question_id).first()
+    try:
+        question_uuid = UUID(question_id)
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Question not found")
+
+    question = db.query(Question).filter(Question.id == question_uuid).first()
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
     existing = db.query(UserQuestion).filter(
         UserQuestion.user_id == current_user.id,
-        UserQuestion.question_id == question_id,
+        UserQuestion.question_id == question_uuid,
     ).first()
 
     if existing:
@@ -101,7 +107,7 @@ def mark_done(
         db.commit()
         return {"done": False, "message": "Unmarked"}
     else:
-        uq = UserQuestion(user_id=current_user.id, question_id=question_id)
+        uq = UserQuestion(user_id=current_user.id, question_id=question_uuid)
         db.add(uq)
         current_user.questions_done += 1
         db.commit()

@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from jose import JWTError
 from pydantic import BaseModel
 from typing import Optional
+from uuid import UUID
 
 from database import get_db
 from models.user import User
@@ -31,7 +32,8 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         user_id = payload.get("sub")
         if not user_id or payload.get("type") != "access":
             raise exc
-    except JWTError:
+        user_id = UUID(user_id)
+    except (JWTError, ValueError):
         raise exc
     user = db.query(User).filter(User.id == user_id).first()
     if not user or not user.is_active:
@@ -81,7 +83,7 @@ def refresh_token(payload: RefreshRequest, db: Session = Depends(get_db)):
         data = decode_token(payload.refresh_token)
         if data.get("type") != "refresh":
             raise HTTPException(status_code=401, detail="Invalid refresh token")
-        user = db.query(User).filter(User.id == data.get("sub")).first()
+        user = db.query(User).filter(User.id == UUID(data.get("sub", ""))).first()
         if not user:
             raise HTTPException(status_code=401, detail="User not found")
         return {"access_token": create_access_token({"sub": str(user.id)}), "token_type": "bearer"}

@@ -265,13 +265,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   <div class="hero">
     <div class="hero-badge">&#129504; Exclusively for Data Science &amp; AI &mdash; B.Tech</div>
     <h1>Your personal <span>AI interviewer</span> for DS &amp; AI roles</h1>
-    <p class="hero-sub">Voice-to-voice mock interviews, ATS resume checker, and 200+ DSAI-specific questions across ML, DL, DSA, NLP &amp; more.</p>
+    <p class="hero-sub">Voice-to-voice mock interviews, ATS resume checker, and 270+ DSAI and HR interview questions across ML, DL, DSA, NLP &amp; more.</p>
     <div class="hero-btns">
       <button class="btn-primary" onclick="showPage('interview')">&#127897;&#65039; Start AI Interview &rarr;</button>
       <button class="btn-outline" onclick="showPage('questions')">Browse Questions</button>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">200+</div><div class="stat-label">DSAI questions</div></div>
+      <div class="stat"><div class="stat-num">270+</div><div class="stat-label">DSAI + HR questions</div></div>
       <div class="stat"><div class="stat-num">7</div><div class="stat-label">Core subjects</div></div>
       <div class="stat"><div class="stat-num">Voice</div><div class="stat-label">AI speaks to you</div></div>
       <div class="stat"><div class="stat-num">ATS</div><div class="stat-label">Resume checker</div></div>
@@ -424,6 +424,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
           <button class="filter-opt" onclick="filterQ(this,'subject','Stats')"><span class="filter-dot" style="background:#A78BFA"></span>Statistics</button>
           <button class="filter-opt" onclick="filterQ(this,'subject','NLP')"><span class="filter-dot" style="background:#4ADE80"></span>NLP</button>
           <button class="filter-opt" onclick="filterQ(this,'subject','CV')"><span class="filter-dot" style="background:#F97316"></span>Computer Vision</button>
+          <button class="filter-opt" onclick="filterQ(this,'subject','HR')"><span class="filter-dot" style="background:#EC4899"></span>HR Interview</button>
         </div>
       </div>
       <div class="filter-group">
@@ -441,6 +442,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
           <button class="filter-opt active" onclick="filterQ(this,'type','All')"><span class="filter-dot" style="background:var(--accent)"></span>All Types</button>
           <button class="filter-opt" onclick="filterQ(this,'type','Conceptual')"><span class="filter-dot" style="background:#4ECDC4"></span>Conceptual</button>
           <button class="filter-opt" onclick="filterQ(this,'type','Coding')"><span class="filter-dot" style="background:#FF6B6B"></span>Coding</button>
+          <button class="filter-opt" onclick="filterQ(this,'type','Situational')"><span class="filter-dot" style="background:#A78BFA"></span>Situational</button>
           <button class="filter-opt" onclick="filterQ(this,'type','HR')"><span class="filter-dot" style="background:#FBBF24"></span>HR</button>
         </div>
       </div>
@@ -459,7 +461,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 <div class="page" id="page-ats">
   <div class="ats-wrap">
     <div class="ats-title">ATS Resume Checker</div>
-    <p class="ats-sub">Upload your resume PDF and get a real ATS score with keyword analysis tailored for DS &amp; AI roles.</p>
+    <p class="ats-sub">Upload a text-based PDF for a transparent DS &amp; AI resume review: skills coverage, structure, impact evidence and targeted improvements.</p>
 
     <!-- Upload zone -->
     <div class="upload-zone" id="upload-zone"
@@ -493,7 +495,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
           <text id="ats-score-text" x="70" y="66" text-anchor="middle" font-family="Space Grotesk" font-size="28" font-weight="700" fill="#E8EAF0">0</text>
           <text x="70" y="84" text-anchor="middle" font-family="Inter" font-size="11" fill="#6B7494">/100</text>
         </svg>
-        <div style="font-size:.85rem;color:var(--text2);margin-top:6px">ATS Score &mdash; <strong id="ats-verdict" style="color:var(--amber)">Analysing...</strong></div>
+        <div style="font-size:.85rem;color:var(--text2);margin-top:6px">Resume match score &mdash; <strong id="ats-verdict" style="color:var(--amber)">Analysing...</strong></div>
+        <div id="ats-score-note" style="font-size:.75rem;color:var(--text3);max-width:440px;line-height:1.5;margin-top:8px"></div>
       </div>
 
       <!-- Section scores -->
@@ -509,7 +512,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
           <div class="progress-bar"><div class="progress-fill" id="format-bar" style="width:0%;background:linear-gradient(90deg,var(--green),var(--accent2))"></div></div>
         </div>
         <div class="ats-sec">
-          <div class="sec-title">Keyword density</div>
+          <div class="sec-title">Impact evidence</div>
           <div class="sec-score" style="color:var(--amber)"><span id="kw-score">0</span><span style="font-size:1rem;color:var(--text3)">/100</span></div>
           <div class="progress-bar"><div class="progress-fill" id="kw-bar" style="width:0%;background:linear-gradient(90deg,var(--amber),#F97316)"></div></div>
         </div>
@@ -517,7 +520,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
       <!-- Missing keywords -->
       <div class="keywords-missing">
-        <h4>&#9888;&#65039; Missing keywords &mdash; add these to your resume</h4>
+        <h4>&#9888;&#65039; Potential skill gaps &mdash; add only if truthful</h4>
         <div class="kw-list" id="missing-kw-list"></div>
       </div>
 
@@ -549,12 +552,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
         <p>Aria (your AI interviewer) will speak each question aloud. Answer with your voice. She listens, and when you pause she automatically moves to the next question. No buttons needed.</p>
         <div style="font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:.75rem">Choose Subject</div>
         <div class="subject-grid">
-          <div class="subject-btn selected" onclick="selectSubject(this,'ML')"><div class="s-icon">&#129302;</div><div class="s-name">Machine Learning</div><div class="s-count">35 questions</div></div>
-          <div class="subject-btn" onclick="selectSubject(this,'DL')"><div class="s-icon">&#129504;</div><div class="s-name">Deep Learning</div><div class="s-count">28 questions</div></div>
-          <div class="subject-btn" onclick="selectSubject(this,'DSA')"><div class="s-icon">&#127795;</div><div class="s-name">DSA</div><div class="s-count">30 questions</div></div>
-          <div class="subject-btn" onclick="selectSubject(this,'Python')"><div class="s-icon">&#128013;</div><div class="s-name">Python</div><div class="s-count">20 questions</div></div>
-          <div class="subject-btn" onclick="selectSubject(this,'Stats')"><div class="s-icon">&#128202;</div><div class="s-name">Statistics</div><div class="s-count">25 questions</div></div>
-          <div class="subject-btn" onclick="selectSubject(this,'NLP')"><div class="s-icon">&#128172;</div><div class="s-name">NLP</div><div class="s-count">22 questions</div></div>
+          <div class="subject-btn selected" onclick="selectSubject(this,'ML')"><div class="s-icon">&#129302;</div><div class="s-name">Machine Learning</div><div class="s-count">37 questions</div></div>
+          <div class="subject-btn" onclick="selectSubject(this,'DL')"><div class="s-icon">&#129504;</div><div class="s-name">Deep Learning</div><div class="s-count">36 questions</div></div>
+          <div class="subject-btn" onclick="selectSubject(this,'DSA')"><div class="s-icon">&#127795;</div><div class="s-name">DSA</div><div class="s-count">37 questions</div></div>
+          <div class="subject-btn" onclick="selectSubject(this,'Python')"><div class="s-icon">&#128013;</div><div class="s-name">Python</div><div class="s-count">35 questions</div></div>
+          <div class="subject-btn" onclick="selectSubject(this,'Stats')"><div class="s-icon">&#128202;</div><div class="s-name">Statistics</div><div class="s-count">35 questions</div></div>
+          <div class="subject-btn" onclick="selectSubject(this,'NLP')"><div class="s-icon">&#128172;</div><div class="s-name">NLP</div><div class="s-count">36 questions</div></div>
           <div class="subject-btn" onclick="selectSubject(this,'Mixed')"><div class="s-icon">&#127919;</div><div class="s-name">Mixed Round</div><div class="s-count">All subjects</div></div>
         </div>
         <div class="form-row">
@@ -686,13 +689,14 @@ function showQuestionsLoading(){
 async function loadQuestionsFromAPI(){
   showQuestionsLoading();
   try {
-    let url = `${API}/questions?limit=200`;
+    // Avoid a browser reusing an older question-bank response after login.
+    let url = `${API}/questions?limit=500&_=${Date.now()}`;
     if(activeFilters.subject !== 'All') url += `&subject=${activeFilters.subject}`;
     if(activeFilters.diff    !== 'All') url += `&difficulty=${activeFilters.diff}`;
     if(activeFilters.type    !== 'All') url += `&type=${activeFilters.type}`;
     if(searchTerm)                      url += `&search=${encodeURIComponent(searchTerm)}`;
 
-    const res  = await fetch(url);
+    const res  = await fetch(url, { cache: 'no-store' });
     const data = await res.json();
 
     if(!res.ok) throw new Error('API error');
@@ -924,6 +928,7 @@ function renderATSResult(data){
 
   // Score text
   document.getElementById('ats-score-text').textContent = overall;
+  document.getElementById('ats-score-note').textContent = data.score_note || '';
 
   // Verdict
   let verdict = '', vcolor = '';
@@ -1117,6 +1122,29 @@ function shuffle(arr){
   return a;
 }
 
+// Persist a shuffled deck for each subject so sessions use unused questions
+// before cycling back to earlier ones.
+function nextInterviewQuestions(subject, count){
+  const pool=[...new Set(IV_QUESTION_POOL[subject]||IV_QUESTION_POOL.ML)];
+  const key=`prepwise_interview_deck_${subject}`;
+  let deck=[];
+  try{deck=JSON.parse(localStorage.getItem(key)||'[]');}catch(e){deck=[];}
+  deck=deck.filter(question=>pool.includes(question));
+  const selected=[];
+  while(selected.length<Math.min(count,pool.length)){
+    if(!deck.length){
+      deck=shuffle(pool.filter(question=>!selected.includes(question)));
+      const lastAsked=localStorage.getItem(`${key}_last`);
+      if(deck.length>1&&deck[0]===lastAsked)[deck[0],deck[1]]=[deck[1],deck[0]];
+    }
+    const question=deck.shift();
+    if(question&&!selected.includes(question))selected.push(question);
+  }
+  if(selected.length)localStorage.setItem(`${key}_last`,selected[selected.length-1]);
+  localStorage.setItem(key,JSON.stringify(deck));
+  return selected;
+}
+
 // How many questions to ask per session (based on duration)
 function questionsForDuration(mins){
   if(mins<=5)return 3;
@@ -1148,9 +1176,8 @@ function updateTimer(){
 function startInterview(){
   answerLog=[];
   const mins=parseInt(document.getElementById('iv-duration').value);
-  const pool=IV_QUESTION_POOL[selectedSubject]||IV_QUESTION_POOL.ML;
   const n=questionsForDuration(mins);
-  ivQs=shuffle(pool).slice(0,Math.min(n,pool.length));
+  ivQs=nextInterviewQuestions(selectedSubject,n);
   ivIdx=0;
   ivSeconds=parseInt(document.getElementById('iv-duration').value)*60;
   document.getElementById('interview-setup').style.display='none';
@@ -1420,16 +1447,31 @@ function submitUserAnswer(text){
   console.log('Q'+ivIdx+' score:'+score+' words:'+text.trim().split(/\s+/).length);
   ivIdx++;
   updateQBadge();
-  const T=['Interesting. ','Good point. ','Noted. ','Alright. ','Okay. '];
+  const feedback=interviewerFeedback(text.trim(),score);
   setTimeout(function(){
     if(ivIdx < ivQs.length){
       const isLast=(ivIdx===ivQs.length-1);
-      aiSpeak((isLast?'Last question. ':T[Math.floor(Math.random()*T.length)])+ivQs[ivIdx]);
+      aiSpeak(`${feedback} ${isLast?'Last question. ':''}${ivQs[ivIdx]}`);
     } else {
       aiSpeak("That was your final question. Generating your performance report now.");
       setTimeout(showReport,3500);
     }
   },1000);
+}
+
+function interviewerFeedback(answer,score){
+  const normalized=answer.toLowerCase().replace(/[.!?,]/g,'').trim();
+  const passPatterns=[
+    /^(i )?(do not|don't) know$/,/^(no idea|idk|pass|skip|not sure|i have no idea)$/,
+    /^(i )?cannot answer( this)?$/
+  ];
+  if(passPatterns.some(pattern=>pattern.test(normalized))||normalized.split(/\s+/).length<4){
+    return 'No problem. We will move on.';
+  }
+  if(score<20)return 'Thank you. That answer did not address the main concept. Let us continue.';
+  if(score<45)return 'Noted. A stronger answer would define the concept and give a relevant example. Next question.';
+  if(score<70)return 'Thank you. You covered some relevant points. Let us continue.';
+  return 'Thank you. Your answer was clear and relevant. Let us continue.';
 }
 
 function addConvLog(role,text){
@@ -1489,8 +1531,8 @@ function resetInterview(){
 // ======================================================
 // Auto-detect: use Render backend in production, localhost in dev
 const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'http://localhost:8000'
-  : 'https://prepwise-3tk6.onrender.com';
+  ? 'http://127.0.0.1:8000'
+  : 'https://prepwise-backend.onrender.com';
 
 // Token helpers
 const Auth = {

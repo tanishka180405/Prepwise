@@ -1,5 +1,4 @@
-from sqlalchemy import Column, String, Text, Integer, Float, DateTime, ForeignKey, JSON
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Column, String, Text, Integer, Float, DateTime, ForeignKey, JSON, Uuid
 from sqlalchemy.sql import func
 import uuid
 
@@ -9,8 +8,8 @@ from database import Base
 class InterviewSession(Base):
     __tablename__ = "interview_sessions"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=True, index=True)
+    id = Column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = Column(Uuid(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=True, index=True)
 
     subject = Column(String(20), nullable=False)   # ML, DL, DSA, etc.
     company = Column(String(100), default="Any")
@@ -32,8 +31,8 @@ class InterviewSession(Base):
 class ATSResult(Base):
     __tablename__ = "ats_results"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    id = Column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = Column(Uuid(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
 
     filename = Column(String(255), nullable=True)
     overall_score = Column(Float, nullable=False)
