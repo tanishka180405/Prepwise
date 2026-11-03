@@ -692,6 +692,1092 @@ HR_QUESTIONS = [
 ]
 QUESTIONS.extend(dict(subject='HR', difficulty=difficulty, type='HR', company='Any', topic=topic, text=text, answer=answer) for difficulty, topic, text, answer in HR_QUESTIONS)
 
+# ══════════════════════════════════════════════════════════════
+# NEW QUESTIONS — BATCH 2  (expanding to 400+)
+# ══════════════════════════════════════════════════════════════
+
+QUESTIONS.extend([
+
+    # ─────────────────────────────────────────
+    # MACHINE LEARNING — 35 new questions
+    # ─────────────────────────────────────────
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="TCS", topic="Algorithms",
+         text="How does Naive Bayes work and what is the 'naive' assumption?",
+         answer="Naive Bayes applies Bayes' theorem with the assumption that all features are conditionally independent given the class label. Despite this 'naive' assumption rarely holding in practice, it works surprisingly well for text classification, spam filtering and sentiment analysis. It is fast, simple and needs little training data."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="Wipro", topic="Clustering",
+         text="How does K-Means clustering work?",
+         answer="K-Means partitions data into K clusters by iteratively assigning each point to the nearest centroid, then recomputing centroids as the mean of assigned points. It repeats until centroids stabilise. You must choose K in advance (using elbow method or silhouette score). It assumes spherical, equally-sized clusters."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="Infosys", topic="Algorithms",
+         text="What is logistic regression and how does it differ from linear regression?",
+         answer="Logistic regression predicts the probability of a binary outcome using a sigmoid function that maps a linear combination of features to [0,1]. Unlike linear regression which predicts continuous values, logistic regression outputs probabilities and uses log-loss (cross-entropy) as its cost function."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="Any", topic="Fundamentals",
+         text="What is the difference between multi-class and multi-label classification?",
+         answer="Multi-class means each sample belongs to exactly one of K classes (e.g., classifying an image as cat, dog, or bird). Multi-label means each sample can belong to multiple classes simultaneously (e.g., a movie tagged as both 'comedy' and 'romance'). Different loss functions and architectures are used for each."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="TCS", topic="Preprocessing",
+         text="What are common strategies for handling missing data?",
+         answer="Common strategies: deletion (drop rows/columns if missingness is random and small), imputation with mean/median/mode, model-based imputation (KNN imputer, iterative imputer), or using algorithms that handle missing values natively (XGBoost). The choice depends on the missingness pattern (MCAR, MAR, MNAR) and data size."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="Any", topic="Fundamentals",
+         text="What is the difference between parametric and non-parametric models?",
+         answer="Parametric models assume a fixed functional form and have a fixed number of parameters regardless of data size (e.g., linear regression, logistic regression). Non-parametric models make fewer assumptions and their complexity grows with data (e.g., KNN, decision trees, kernel SVM). Parametric models are faster but may underfit complex patterns."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="Wipro", topic="Evaluation",
+         text="What is precision and recall, and when do you prioritise one over the other?",
+         answer="Precision is TP/(TP+FP) — how many predicted positives are correct. Recall is TP/(TP+FN) — how many actual positives are found. Prioritise precision when false positives are costly (spam filter). Prioritise recall when false negatives are costly (cancer detection). F1-score balances both."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="Any", topic="Clustering",
+         text="What is the difference between DBSCAN and K-Means?",
+         answer="K-Means requires specifying K and assumes spherical clusters. DBSCAN discovers clusters of arbitrary shape based on density, requires epsilon (neighbourhood radius) and min_points parameters, and automatically identifies noise points. DBSCAN handles outliers better but struggles with varying density clusters."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="Infosys", topic="Feature Engineering",
+         text="What is one-hot encoding and when would you use it?",
+         answer="One-hot encoding converts categorical variables into binary columns, one per category. Use it for nominal (unordered) categories like colour or country. For high-cardinality features, consider target encoding or embedding instead to avoid dimensionality explosion. Ordinal categories can use label encoding."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="TCS", topic="Fundamentals",
+         text="What is the difference between a generative and discriminative model?",
+         answer="Discriminative models learn the boundary between classes directly (P(y|x)), like logistic regression and SVM. Generative models learn the joint distribution P(x,y) and can generate new samples, like Naive Bayes and GANs. Discriminative models usually have better classification accuracy; generative models can handle missing data and generate synthetic data."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Google", topic="Clustering",
+         text="How do you choose the optimal number of clusters in K-Means?",
+         answer="Common methods: Elbow method (plot inertia vs K, look for the 'elbow'), Silhouette score (measures cluster cohesion vs separation, higher is better), Gap statistic (compares inertia to a null reference distribution), and domain knowledge. No single method is definitive — use multiple and validate with business context."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Amazon", topic="Interpretability",
+         text="What are SHAP values and how do they help explain model predictions?",
+         answer="SHAP (SHapley Additive exPlanations) assigns each feature an importance value for a specific prediction based on game theory. SHAP values sum to the difference between the model output and the average prediction. They provide consistent, locally faithful explanations and can show both global feature importance and individual prediction breakdowns."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Interpretability",
+         text="What is LIME and how does it differ from SHAP?",
+         answer="LIME (Local Interpretable Model-agnostic Explanations) explains individual predictions by fitting a simple interpretable model locally around the prediction. Unlike SHAP which has theoretical guarantees from Shapley values, LIME is faster but can produce inconsistent explanations. SHAP is more computationally expensive but provides theoretically grounded feature attributions."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Google", topic="Hyperparameters",
+         text="Compare grid search, random search, and Bayesian optimisation for hyperparameter tuning.",
+         answer="Grid search exhaustively evaluates all combinations — thorough but exponentially expensive. Random search samples randomly and often finds good results faster since not all hyperparameters are equally important. Bayesian optimisation (e.g., Optuna, Hyperopt) builds a probabilistic model of the objective and selects promising configurations, balancing exploration and exploitation. It is most efficient for expensive evaluations."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Amazon", topic="Ensembles",
+         text="What is stacking in ensemble methods and how does it work?",
+         answer="Stacking trains multiple diverse base models (e.g., Random Forest, SVM, Neural Net), then uses their predictions as input features for a meta-learner (often logistic regression or a simple model). The meta-learner learns the optimal way to combine base model predictions. It typically uses cross-validated predictions to avoid overfitting."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Flipkart", topic="Recommendation",
+         text="What is the difference between collaborative filtering and content-based recommendation?",
+         answer="Collaborative filtering recommends based on user-item interaction patterns (users who liked X also liked Y) without needing item features. Content-based filtering uses item attributes to recommend similar items. Collaborative filtering suffers from cold-start for new users/items; content-based is limited to known features. Hybrid approaches combine both."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Any", topic="Time Series",
+         text="What makes time series data different from regular tabular data?",
+         answer="Time series data has temporal ordering, autocorrelation (values depend on past values), and potential trends, seasonality and non-stationarity. You cannot randomly split train/test — you must use temporal splits. Feature engineering involves lags, rolling statistics and calendar features. Models must respect the temporal structure."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Google", topic="Dimensionality",
+         text="How does t-SNE differ from PCA for dimensionality reduction?",
+         answer="PCA is linear — it finds orthogonal directions of maximum variance. t-SNE is non-linear — it preserves local neighbourhood structure by minimising KL divergence between high and low-dimensional probability distributions. PCA is fast, deterministic and preserves global structure. t-SNE is slow, stochastic, great for visualisation but not suitable for preprocessing or new data projection."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Any", topic="Anomaly Detection",
+         text="What are the main approaches to anomaly detection?",
+         answer="Statistical methods (z-score, IQR), distance-based (KNN, LOF — Local Outlier Factor), model-based (Isolation Forest, One-Class SVM), density-based (DBSCAN), and deep learning (autoencoders where reconstruction error flags anomalies). Choice depends on data dimensionality, labelled anomalies availability, and whether anomalies are global or contextual."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Learning Types",
+         text="What is semi-supervised learning and when is it useful?",
+         answer="Semi-supervised learning uses a small amount of labelled data with a large amount of unlabelled data. Techniques include self-training (model labels unlabelled data, retrains), co-training (two models teach each other), and graph-based methods. Useful when labelling is expensive (medical imaging, NLP) but unlabelled data is abundant."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Any", topic="Learning Types",
+         text="What is active learning and how does it reduce labelling cost?",
+         answer="Active learning lets the model query the most informative unlabelled samples for human labelling, rather than labelling randomly. Strategies include uncertainty sampling (label samples the model is least confident about), query-by-committee, and expected model change. This dramatically reduces the number of labels needed to achieve good performance."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Any", topic="Calibration",
+         text="What is probability calibration and why does it matter?",
+         answer="A calibrated classifier's predicted probabilities match the true frequency of outcomes — if it predicts 70% probability, the event should occur 70% of the time. Many models (SVM, Random Forest) are poorly calibrated. Calibration matters for decision-making, risk assessment and when you threshold predictions. Methods include Platt scaling and isotonic regression."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Google", topic="MLOps",
+         text="What is model versioning and why is it important in MLOps?",
+         answer="Model versioning tracks different iterations of models along with their code, data, hyperparameters and metrics. Tools like MLflow, DVC and Weights & Biases enable this. It is critical for reproducibility, rollback capability, A/B testing in production, audit trails, and collaboration. Without it, you cannot reliably reproduce or compare experiments."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Amazon", topic="Feature Engineering",
+         text="What are some common feature engineering techniques for tabular data?",
+         answer="Key techniques: binning continuous variables, polynomial features, interaction features, target encoding for categoricals, date/time decomposition (day of week, month), log/sqrt transforms for skewed distributions, aggregation features (group statistics), lag features for temporal data, and domain-specific features. Good feature engineering often matters more than model choice."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Any", topic="Feature Selection",
+         text="What are the main approaches to feature selection?",
+         answer="Filter methods use statistical tests (correlation, chi-squared, mutual information) independently of the model. Wrapper methods evaluate feature subsets with the model (forward selection, backward elimination, recursive feature elimination). Embedded methods learn feature importance during training (L1 regularisation, tree-based importance). Filters are fastest; wrappers are most accurate but expensive."),
+
+    dict(subject="ML", difficulty="Medium", type="Coding", company="Google", topic="Algorithms",
+         text="How would you implement K-Means clustering from scratch?",
+         answer="1. Randomly initialise K centroids. 2. Assign each point to the nearest centroid using Euclidean distance. 3. Recompute centroids as the mean of assigned points. 4. Repeat steps 2-3 until centroids do not change (or max iterations reached). Use K-Means++ initialisation for better starting centroids. Track inertia (sum of squared distances) for convergence."),
+
+    dict(subject="ML", difficulty="Medium", type="Coding", company="Amazon", topic="Evaluation",
+         text="How would you implement stratified K-fold cross-validation from scratch?",
+         answer="1. Compute class proportions in the full dataset. 2. Separate indices by class. 3. Shuffle indices within each class. 4. Distribute indices across K folds such that each fold has approximately the same class distribution as the full dataset. 5. For each fold, use it as validation and the rest as training. This ensures each fold is representative, critical for imbalanced data."),
+
+    dict(subject="ML", difficulty="Medium", type="Coding", company="Microsoft", topic="Preprocessing",
+         text="How would you write a custom feature transformer compatible with sklearn's Pipeline?",
+         answer="Create a class inheriting from sklearn's BaseEstimator and TransformerMixin. Implement fit() to learn parameters from training data (e.g., means for imputation) and transform() to apply the transformation. TransformerMixin provides fit_transform() automatically. Store fitted parameters as attributes ending with _ (sklearn convention). This ensures proper train/test separation in pipelines."),
+
+    dict(subject="ML", difficulty="Hard", type="Conceptual", company="Google", topic="AutoML",
+         text="What is AutoML and what are its limitations?",
+         answer="AutoML automates model selection, hyperparameter tuning, feature engineering and architecture search (e.g., Auto-sklearn, H2O, Google AutoML). Limitations: computationally expensive, may not outperform domain-expert feature engineering, can be a black box, may not handle data quality issues, and requires careful validation to avoid overfitting during the search process itself."),
+
+    dict(subject="ML", difficulty="Hard", type="Conceptual", company="Amazon", topic="Recommendation",
+         text="Explain matrix factorisation for recommendation systems.",
+         answer="Matrix factorisation decomposes the sparse user-item rating matrix into two lower-rank matrices (user factors and item factors). The dot product of a user vector and item vector predicts the rating. ALS (Alternating Least Squares) and SGD are common optimisation methods. It handles sparsity well, captures latent factors, but struggles with cold-start. Modern approaches add side information and deep learning."),
+
+    dict(subject="ML", difficulty="Hard", type="Conceptual", company="Google", topic="Dimensionality",
+         text="Explain UMAP and how it compares to t-SNE for dimensionality reduction.",
+         answer="UMAP (Uniform Manifold Approximation and Projection) is based on Riemannian geometry and topological data analysis. Compared to t-SNE, UMAP is significantly faster, scales better to large datasets, better preserves global structure, supports arbitrary embedding dimensions, and can transform new data points. Both are non-linear and useful for visualisation, but UMAP is generally preferred in practice."),
+
+    dict(subject="ML", difficulty="Hard", type="Conceptual", company="Microsoft", topic="Fairness",
+         text="What are the main metrics for measuring fairness in ML models?",
+         answer="Key fairness metrics: demographic parity (equal positive prediction rates across groups), equalised odds (equal TPR and FPR across groups), predictive parity (equal precision), individual fairness (similar individuals get similar predictions), and counterfactual fairness. These metrics can conflict — satisfying all simultaneously is often mathematically impossible (impossibility theorem). The choice depends on context and legal requirements."),
+
+    dict(subject="ML", difficulty="Hard", type="Situational", company="Google", topic="MLOps",
+         text="You need to deploy an ML model that must handle 10,000 requests per second. What architecture would you design?",
+         answer="Use a model serving framework (TensorFlow Serving, TorchServe, or Triton Inference Server) behind a load balancer. Batch inference requests for throughput. Cache frequent predictions. Optimise the model (quantisation, pruning, ONNX conversion). Use horizontal scaling with Kubernetes. Monitor latency percentiles (p50, p95, p99). Consider a feature store for real-time feature computation and an A/B testing framework for safe rollouts."),
+
+    dict(subject="ML", difficulty="Hard", type="Situational", company="Amazon", topic="Data Quality",
+         text="You discover that your training data has systematic label noise — about 15% of labels are incorrect. How do you handle this?",
+         answer="Approaches: confident learning (identify likely mislabelled samples using model predictions and clean them), label smoothing to make the model less sensitive to noise, noise-robust loss functions (symmetric cross-entropy, generalised cross-entropy), training with noise-aware regularisation, crowdsourcing for re-labelling suspicious samples, and using ensemble agreement to flag noisy labels. The cleanlab library automates confident learning."),
+
+    dict(subject="ML", difficulty="Hard", type="Situational", company="Meta", topic="Scale",
+         text="Your training dataset has 100 million rows and does not fit in memory. How do you train a model?",
+         answer="Options: out-of-core learning with algorithms that support partial_fit (SGDClassifier, MiniBatchKMeans), distributed frameworks (Spark MLlib, Dask-ML, Ray), gradient-boosted trees with data sampling (XGBoost external memory mode), online learning, or deep learning with data loaders and batching. Also consider feature selection to reduce dimensionality, and data sampling if the full dataset is not necessary for convergence."),
+
+    dict(subject="ML", difficulty="Hard", type="Situational", company="Netflix", topic="Recommendation",
+         text="You are building a movie recommendation system. Users complain that recommendations are repetitive and lack diversity. What do you do?",
+         answer="Introduce diversity metrics alongside relevance (Intra-List Diversity, coverage, novelty). Use re-ranking strategies: Maximal Marginal Relevance (MMR) to balance relevance and diversity. Add exploration mechanisms (epsilon-greedy, Thompson sampling). Incorporate serendipity by occasionally recommending outside the user's typical preferences. Use multi-objective optimisation and A/B test the diversity-relevance tradeoff."),
+
+    # ─────────────────────────────────────────
+    # DEEP LEARNING — 35 new questions
+    # ─────────────────────────────────────────
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="TCS", topic="Fundamentals",
+         text="What is a loss function and name three common ones?",
+         answer="A loss function measures how far model predictions are from true labels, guiding optimisation. Common ones: MSE (mean squared error) for regression, cross-entropy (log loss) for classification, and binary cross-entropy for binary classification. The choice of loss function directly affects what the model optimises for."),
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="Wipro", topic="Training",
+         text="What is the difference between a hyperparameter and a learnable parameter?",
+         answer="Learnable parameters (weights, biases) are updated by the optimiser during training. Hyperparameters (learning rate, batch size, number of layers) are set before training and control the learning process. Hyperparameters are tuned via validation performance; learnable parameters are tuned by gradient descent."),
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="Any", topic="Initialisation",
+         text="Why is weight initialisation important in neural networks?",
+         answer="Bad initialisation causes vanishing or exploding gradients, making training fail. If weights are too small, signals shrink to zero through layers. If too large, they explode. Xavier initialisation works well with sigmoid/tanh; He initialisation works well with ReLU. Proper initialisation ensures gradients flow well and training converges faster."),
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="Infosys", topic="Fundamentals",
+         text="What is a softmax function and where is it used?",
+         answer="Softmax converts a vector of raw scores (logits) into a probability distribution that sums to 1. Each output is exp(z_i) / sum(exp(z_j)). It is used as the final layer in multi-class classification networks, followed by cross-entropy loss. For binary classification, sigmoid is used instead."),
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="TCS", topic="Architectures",
+         text="What is an autoencoder and what is it used for?",
+         answer="An autoencoder is a neural network that learns to compress input into a lower-dimensional representation (encoder) and reconstruct it (decoder). It is used for dimensionality reduction, denoising, anomaly detection (high reconstruction error = anomaly), and learning useful representations. Variants include variational autoencoders (VAE) for generative modelling."),
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="Any", topic="Training",
+         text="What is the role of the learning rate in training neural networks?",
+         answer="The learning rate controls how much weights are updated per gradient step. Too high: training oscillates or diverges. Too low: training is very slow and may get stuck in poor local minima. Common practice is to start with a moderate learning rate and use a schedule (cosine decay, step decay) or adaptive optimisers (Adam) that adjust it automatically."),
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="Wipro", topic="Architectures",
+         text="What is the difference between a dense (fully connected) layer and a convolutional layer?",
+         answer="Dense layers connect every neuron to every neuron in the next layer — parameter count grows quadratically. Convolutional layers use small learnable filters that slide across the input, sharing parameters. Convolutions exploit spatial locality and translation invariance, making them much more parameter-efficient for grid-structured data like images."),
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="Any", topic="Fundamentals",
+         text="What is forward propagation and backpropagation?",
+         answer="Forward propagation passes input through the network layer by layer to compute predictions. Backpropagation computes the gradient of the loss with respect to each weight by applying the chain rule backwards through the network. These gradients are then used by the optimiser to update weights. Together they form the core training loop."),
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="Infosys", topic="Training",
+         text="What is data augmentation in deep learning and why is it important?",
+         answer="Data augmentation creates modified versions of training data (rotations, flips, crops, colour jitter for images; synonym replacement for text) to increase effective dataset size and diversity. It reduces overfitting, improves generalisation and is especially valuable when training data is limited. Augmentations should be semantically valid for the task."),
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="Any", topic="Fundamentals",
+         text="What is the difference between a Variational Autoencoder (VAE) and a regular autoencoder?",
+         answer="A regular autoencoder maps inputs to fixed latent vectors. A VAE maps inputs to a distribution (mean and variance), samples from it, and reconstructs. The KL divergence term in VAE's loss encourages the latent space to be smooth and continuous, enabling meaningful interpolation and generation of new samples. VAEs are generative models; regular autoencoders are not."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Google", topic="Initialisation",
+         text="What is the difference between Xavier and He weight initialisation?",
+         answer="Xavier (Glorot) initialisation sets weights from N(0, 2/(n_in + n_out)), designed for sigmoid/tanh activations to keep variance stable across layers. He initialisation uses N(0, 2/n_in), designed for ReLU activations which kill half the signal. Using Xavier with ReLU leads to dying neurons; using He with sigmoid/tanh can cause saturation."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Amazon", topic="Training",
+         text="What are learning rate schedules and name three common ones?",
+         answer="Learning rate schedules adjust the learning rate during training. Step decay: reduce LR by a factor at fixed epochs. Cosine annealing: smoothly decreases LR following a cosine curve. Warmup + decay: start with a small LR, linearly increase to peak, then decay — essential for transformer training. One-cycle policy combines warmup with cosine decay for fast convergence."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Google", topic="Efficiency",
+         text="What is knowledge distillation and why is it used?",
+         answer="Knowledge distillation trains a smaller 'student' model to mimic a larger 'teacher' model's predictions (soft labels) rather than just learning from hard ground-truth labels. The soft labels contain richer information about inter-class relationships. This compresses model knowledge into a smaller, faster model suitable for deployment. Temperature scaling controls the softness of probability distributions."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Architectures",
+         text="What are depthwise separable convolutions and why are they efficient?",
+         answer="Depthwise separable convolutions split a standard convolution into two steps: depthwise convolution (applies a single filter per input channel) and pointwise convolution (1x1 convolution to combine channels). This reduces computation from O(K²·C_in·C_out) to O(K²·C_in + C_in·C_out), roughly 8-9x fewer operations. Used in MobileNet and EfficientNet for mobile deployment."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Google", topic="Training",
+         text="What is mixed precision training and what are its benefits?",
+         answer="Mixed precision training uses both FP16 (half precision) and FP32 (full precision) during training. Forward and backward passes use FP16 for speed; weight updates and loss scaling use FP32 for numerical stability. Benefits: 2-3x faster training, 50% less memory (enabling larger batches), with negligible accuracy loss. Supported via NVIDIA Tensor Cores and frameworks like PyTorch AMP."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Amazon", topic="Efficiency",
+         text="What is gradient accumulation and when would you use it?",
+         answer="Gradient accumulation simulates larger batch sizes by accumulating gradients over multiple forward-backward passes before performing a weight update. If your GPU can only fit batch size 8 but you want effective batch size 32, you accumulate gradients over 4 steps. Useful when memory-constrained but large batches are needed for training stability (especially with batch normalisation and transformer models)."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Meta", topic="Training",
+         text="What is the difference between data parallelism and model parallelism?",
+         answer="Data parallelism splits data across GPUs — each GPU has a copy of the full model and processes different mini-batches, then gradients are averaged. Model parallelism splits the model across GPUs — different layers or components on different GPUs. Data parallelism is simpler and more common. Model parallelism is needed when the model itself does not fit on one GPU (large transformers)."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Google", topic="Efficiency",
+         text="What is model quantisation and what are its tradeoffs?",
+         answer="Quantisation converts model weights and activations from FP32 to lower precision (INT8, INT4). Post-training quantisation is fast but may lose accuracy. Quantisation-aware training simulates quantised inference during training for better accuracy. Tradeoffs: 2-4x smaller model, 2-4x faster inference, but potential accuracy degradation especially for sensitive tasks. Critical for edge and mobile deployment."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Any", topic="Loss Functions",
+         text="What is focal loss and when would you use it?",
+         answer="Focal loss modifies cross-entropy by down-weighting easy examples and focusing on hard, misclassified ones using a focusing parameter gamma. FL = -alpha * (1-p)^gamma * log(p). When gamma=0, it reduces to standard cross-entropy. Introduced for object detection (RetinaNet) to handle extreme class imbalance between background and foreground. Also useful for any highly imbalanced classification task."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Loss Functions",
+         text="What is contrastive loss and triplet loss?",
+         answer="Contrastive loss takes pairs of samples and minimises distance for similar pairs while maximising it for dissimilar ones. Triplet loss takes an anchor, a positive (same class), and a negative (different class), pushing anchor-positive closer and anchor-negative farther by at least a margin. Both are used for learning embeddings in face recognition, similarity search, and metric learning."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Google", topic="Optimisers",
+         text="Compare SGD with momentum, RMSProp, and AdamW.",
+         answer="SGD+momentum accumulates past gradients for faster convergence and smoother updates. RMSProp adapts per-parameter learning rates using a running average of squared gradients — good for non-stationary objectives. AdamW combines momentum and adaptive rates with proper weight decay decoupling. SGD+momentum often generalises better; Adam converges faster. AdamW is standard for transformers."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Any", topic="Self-Supervised",
+         text="What is self-supervised learning and give two examples?",
+         answer="Self-supervised learning creates supervisory signals from the data itself, without human labels. Examples: masked language modelling (BERT predicts masked tokens), contrastive learning (SimCLR learns by comparing augmented views of the same image). The learned representations transfer well to downstream tasks. It bridges the gap between unsupervised and supervised learning."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Google", topic="Generative",
+         text="How do diffusion models work at a high level?",
+         answer="Diffusion models work in two phases: forward process gradually adds Gaussian noise to data until it becomes pure noise; reverse process learns to denoise step-by-step to reconstruct data. A neural network is trained to predict the noise at each step. At generation time, start from random noise and iteratively denoise. They produce high-quality, diverse samples and are behind DALL-E 2, Stable Diffusion, and Midjourney."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Meta", topic="Fine-Tuning",
+         text="What is LoRA and why is it popular for fine-tuning large models?",
+         answer="LoRA (Low-Rank Adaptation) freezes the pre-trained model weights and adds small trainable low-rank matrices to attention layers. Instead of fine-tuning all parameters, it trains only the low-rank additions (often less than 1% of parameters). This dramatically reduces memory, storage and compute while achieving comparable performance to full fine-tuning. Multiple LoRA adapters can be stored and swapped efficiently."),
+
+    dict(subject="DL", difficulty="Medium", type="Coding", company="Google", topic="Training",
+         text="How would you implement a custom training loop in PyTorch?",
+         answer="Structure: 1) Define model, loss function, optimizer. 2) Loop over epochs. 3) For each batch: forward pass (predictions = model(inputs)), compute loss, call loss.backward() to compute gradients, call optimizer.step() to update weights, call optimizer.zero_grad() to clear gradients. 4) Evaluate on validation set each epoch. 5) Add learning rate scheduling, early stopping, and model checkpointing."),
+
+    dict(subject="DL", difficulty="Medium", type="Coding", company="Amazon", topic="Architectures",
+         text="How would you implement a simple multi-layer perceptron in PyTorch?",
+         answer="Define a class inheriting nn.Module. In __init__, define layers: nn.Linear(input_dim, hidden_dim), nn.ReLU(), nn.Linear(hidden_dim, output_dim). In forward(), pass input through layers sequentially. For classification, add nn.Softmax or use nn.CrossEntropyLoss which includes softmax. Use nn.Sequential for simpler architectures. Add dropout between layers for regularisation."),
+
+    dict(subject="DL", difficulty="Hard", type="Conceptual", company="Google", topic="Architectures",
+         text="Explain the transformer architecture in detail — what are the key components?",
+         answer="Transformers use self-attention to process sequences in parallel. Key components: multi-head self-attention (captures dependencies between all positions), positional encoding (injects sequence order since there is no recurrence), feed-forward networks (applied per position), layer normalisation, and residual connections. Encoder processes input; decoder generates output with masked attention. The attention formula is softmax(QK^T/sqrt(d_k))V."),
+
+    dict(subject="DL", difficulty="Hard", type="Conceptual", company="Meta", topic="Self-Supervised",
+         text="Explain contrastive learning frameworks like SimCLR and how they learn representations.",
+         answer="SimCLR: 1) Create two augmented views of each image. 2) Pass both through an encoder and a projection head. 3) Use NT-Xent (normalised temperature-scaled cross-entropy) loss to pull augmented views of the same image together and push different images apart in embedding space. MoCo uses a momentum encoder and queue for negative samples. Key insight: good augmentations and large batch sizes (many negatives) are critical for performance."),
+
+    dict(subject="DL", difficulty="Hard", type="Conceptual", company="Google", topic="Efficiency",
+         text="What is Neural Architecture Search (NAS) and what are its challenges?",
+         answer="NAS automates the design of neural network architectures by searching over a defined search space using optimisation (reinforcement learning, evolutionary algorithms, gradient-based methods like DARTS). Challenges: enormous computational cost (early NAS used 1000+ GPU-days), defining a good search space, transferability across tasks and datasets, and the risk of finding architectures that are hard to interpret or deploy."),
+
+    dict(subject="DL", difficulty="Hard", type="Conceptual", company="Any", topic="Training",
+         text="What is curriculum learning and how does it improve training?",
+         answer="Curriculum learning trains models on examples ordered from easy to hard, mimicking human learning. The model first learns basic patterns on easy samples, then refines on harder ones. It can speed up convergence and improve final performance, especially with noisy data. Self-paced learning is a variant where the model itself decides what is easy. Anti-curriculum (hard-first) can also work for some tasks."),
+
+    dict(subject="DL", difficulty="Hard", type="Situational", company="Google", topic="Deployment",
+         text="You need to deploy a large language model (7B parameters) for real-time inference on a single GPU. How do you optimise it?",
+         answer="Apply quantisation (GPTQ, AWQ) to reduce model to INT4/INT8. Use Flash Attention for memory-efficient attention. Apply KV-cache for faster autoregressive generation. Consider vLLM or TensorRT-LLM for optimised serving with continuous batching and PagedAttention. Use speculative decoding with a smaller draft model. Monitor memory with torch.cuda.memory_summary(). Target p95 latency requirements and set appropriate max sequence lengths."),
+
+    dict(subject="DL", difficulty="Hard", type="Situational", company="Amazon", topic="Debugging",
+         text="Your deep learning model's training loss is stuck and not decreasing. What systematic debugging steps would you follow?",
+         answer="1) Verify data pipeline (check labels, normalisation, data loading). 2) Overfit on a single batch first — if it cannot, architecture or implementation is wrong. 3) Check learning rate (try 10x higher and lower). 4) Verify gradient flow (print gradient norms, check for NaN). 5) Simplify architecture. 6) Check loss function implementation. 7) Ensure correct weight initialisation. 8) Try a known-working baseline architecture and config."),
+
+    dict(subject="DL", difficulty="Hard", type="Situational", company="Meta", topic="Scale",
+         text="You are training a model that requires 80GB GPU memory but you only have 24GB GPUs. What strategies do you use?",
+         answer="Gradient checkpointing (recompute activations during backward pass to save memory). Mixed precision training (FP16 halves activation memory). Gradient accumulation (smaller batch per step). Model parallelism (split model across GPUs). DeepSpeed ZeRO (shards optimiser states, gradients, and parameters across GPUs). LoRA or adapter-based fine-tuning if fine-tuning. Reduce sequence length or use efficient attention variants."),
+
+    dict(subject="DL", difficulty="Hard", type="Situational", company="Microsoft", topic="Generative",
+         text="You are fine-tuning a text-to-image diffusion model on a custom dataset of 500 product images. What approach and pitfalls do you consider?",
+         answer="Use DreamBooth or textual inversion for few-shot fine-tuning rather than full fine-tuning. Apply LoRA to reduce memory and overfitting risk. Use proper regularisation images to prevent language drift. Watch for mode collapse (generating near-identical images). Evaluate with FID and CLIP score. Pitfalls: overfitting to 500 images, losing diversity, catastrophic forgetting of base model capabilities. Use a low learning rate and early stopping."),
+
+    # ─────────────────────────────────────────
+    # DATA STRUCTURES & ALGORITHMS — 35 new questions
+    # ─────────────────────────────────────────
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="TCS", topic="Sorting",
+         text="What is the difference between merge sort and quicksort?",
+         answer="Merge sort always runs in O(n log n) but needs O(n) extra space. Quicksort is O(n log n) average but O(n²) worst case (mitigated by random pivot), and is in-place (O(log n) stack space). Merge sort is stable; quicksort is not. In practice, quicksort is faster due to better cache locality. Merge sort is preferred for linked lists and when stability matters."),
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="Wipro", topic="Trees",
+         text="What is a heap data structure and how is it used in priority queues?",
+         answer="A heap is a complete binary tree where each parent is greater (max-heap) or smaller (min-heap) than its children. Insert and extract-min/max are O(log n). It is typically stored as an array (parent at i, children at 2i+1 and 2i+2). Priority queues use heaps to efficiently retrieve the highest/lowest priority element. Python has heapq module for min-heaps."),
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="Infosys", topic="Strings",
+         text="What is a Trie and where is it used?",
+         answer="A Trie (prefix tree) is a tree where each node represents a character and paths from root to nodes represent prefixes. Used for autocomplete, spell checkers, IP routing, and dictionary word lookups. Insert and search are O(L) where L is word length. It trades memory for speed compared to hash tables for prefix-based queries."),
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="Any", topic="Graphs",
+         text="What are the two main ways to represent a graph and their tradeoffs?",
+         answer="Adjacency matrix: 2D array where matrix[i][j]=1 if edge exists. O(1) edge lookup but O(V²) space. Adjacency list: each vertex stores a list of neighbours. O(V+E) space, efficient for sparse graphs. Matrix is better for dense graphs and quick edge checks. List is better for traversals and sparse graphs, which are more common in practice."),
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="TCS", topic="Techniques",
+         text="What is the difference between recursion and iteration?",
+         answer="Recursion solves a problem by calling itself with smaller subproblems and has a base case. Iteration uses loops. Every recursive solution can be converted to iterative (using an explicit stack). Recursion is more elegant for trees and divide-and-conquer but uses O(n) stack space and risks stack overflow. Iteration is more memory-efficient and often faster."),
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="Any", topic="Fundamentals",
+         text="What is the difference between a queue and a deque?",
+         answer="A queue supports FIFO operations: enqueue at the rear, dequeue from the front. A deque (double-ended queue) supports insertion and removal from both ends in O(1). Deques can be used as both stacks and queues. Python's collections.deque is implemented as a doubly-linked list of blocks, supporting O(1) operations on both ends."),
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="Wipro", topic="Techniques",
+         text="What is the two-pointer technique? Give an example.",
+         answer="Two pointers use two indices that move through a sorted array/string to solve problems in O(n) instead of O(n²). Example: finding if a pair in a sorted array sums to a target. Start one pointer at the beginning and one at the end. If sum is too large, move right pointer left. If too small, move left pointer right. Also used for removing duplicates and the container with most water problem."),
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="Infosys", topic="Techniques",
+         text="What is the sliding window technique?",
+         answer="Sliding window maintains a window (subarray/substring) that slides over the data, adding elements at one end and removing from the other. It converts O(n·k) brute-force solutions to O(n). Fixed-size window: maximum sum subarray of size k. Variable-size window: longest substring with at most K distinct characters. Track window state using a hash map or variables."),
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="Any", topic="Bit Manipulation",
+         text="What are some common bit manipulation tricks used in interviews?",
+         answer="Check if n is power of 2: n & (n-1) == 0. Count set bits: Brian Kernighan's algorithm (repeatedly do n = n & (n-1)). Toggle bit: n ^ (1 << i). Check if bit is set: n & (1 << i). XOR of array finds the single non-duplicate element. Bit manipulation is O(1) per operation and space-efficient for problems involving sets, toggling states, or finding missing/duplicate numbers."),
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="TCS", topic="Sorting",
+         text="What is the difference between a stable and unstable sort?",
+         answer="A stable sort preserves the relative order of equal elements. Merge sort, insertion sort and TimSort are stable. Quicksort and heapsort are unstable. Stability matters when sorting by multiple keys (e.g., sort by name then by age — a stable sort preserves name order within same age). Python's built-in sort (TimSort) is stable."),
+
+    dict(subject="DSA", difficulty="Medium", type="Conceptual", company="Google", topic="Graphs",
+         text="What is topological sorting and where is it used?",
+         answer="Topological sort orders vertices of a directed acyclic graph (DAG) such that for every edge u→v, u comes before v. Algorithms: Kahn's (BFS with in-degree tracking) or DFS-based (add to result in reverse post-order). Used for task scheduling, build systems, course prerequisite ordering, and dependency resolution. Only possible for DAGs — a cycle means no valid ordering."),
+
+    dict(subject="DSA", difficulty="Medium", type="Conceptual", company="Amazon", topic="Graphs",
+         text="What is a minimum spanning tree and compare Kruskal's and Prim's algorithms?",
+         answer="MST connects all vertices with minimum total edge weight without cycles. Kruskal's: sort edges by weight, add each if it does not create a cycle (use Union-Find), O(E log E). Prim's: grow tree from a vertex, always adding the cheapest edge to a new vertex (use min-heap), O(E log V). Kruskal's is better for sparse graphs; Prim's for dense graphs."),
+
+    dict(subject="DSA", difficulty="Medium", type="Conceptual", company="Google", topic="Union-Find",
+         text="What is the Union-Find (Disjoint Set Union) data structure?",
+         answer="Union-Find tracks elements partitioned into disjoint sets. Two operations: find(x) returns the set representative, union(x,y) merges two sets. With path compression and union by rank, both operations are nearly O(1) amortised (inverse Ackermann function). Used for Kruskal's MST, connected components, cycle detection in undirected graphs, and dynamic connectivity problems."),
+
+    dict(subject="DSA", difficulty="Medium", type="Conceptual", company="Amazon", topic="Techniques",
+         text="What is backtracking and how does it differ from brute force?",
+         answer="Backtracking builds solutions incrementally and abandons a path (backtracks) as soon as it determines the path cannot lead to a valid solution. Unlike brute force which checks all possibilities, backtracking prunes the search space. Examples: N-Queens, Sudoku solver, generating permutations/combinations. It is essentially DFS on the solution space tree with pruning."),
+
+    dict(subject="DSA", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Greedy",
+         text="When should you use a greedy algorithm vs dynamic programming?",
+         answer="Use greedy when a locally optimal choice leads to a globally optimal solution (greedy choice property) and the problem has optimal substructure. Examples: activity selection, Huffman coding. Use DP when the problem has overlapping subproblems and optimal substructure but greedy fails (because local optimal is not global). Example: 0/1 knapsack needs DP; fractional knapsack works with greedy."),
+
+    dict(subject="DSA", difficulty="Medium", type="Conceptual", company="Any", topic="Trees",
+         text="What is the difference between AVL trees and Red-Black trees?",
+         answer="Both are self-balancing BSTs. AVL trees are strictly balanced (height difference of subtrees <= 1), giving faster lookups O(log n) with a smaller constant. Red-Black trees are more loosely balanced (longest path <= 2x shortest), giving faster insertions and deletions due to fewer rotations. AVL is better for read-heavy workloads; Red-Black for write-heavy. Most language standard libraries use Red-Black trees."),
+
+    dict(subject="DSA", difficulty="Medium", type="Conceptual", company="Google", topic="Advanced",
+         text="What is a monotonic stack and what problems does it solve?",
+         answer="A monotonic stack maintains elements in increasing or decreasing order. When pushing a new element, pop all elements that violate the monotonic property. Solves 'next greater element', 'next smaller element', 'largest rectangle in histogram', and 'trapping rain water' in O(n). Each element is pushed and popped at most once, giving amortised O(1) per operation."),
+
+    dict(subject="DSA", difficulty="Medium", type="Coding", company="Google", topic="Design",
+         text="How would you implement an LRU Cache?",
+         answer="Use a hash map for O(1) key lookup combined with a doubly-linked list for O(1) insertion/deletion. On get: move the node to the head (most recently used). On put: add to head; if capacity exceeded, remove the tail (least recently used) and delete from hash map. Python: use OrderedDict or implement with a custom doubly-linked list. Total: O(1) for both get and put."),
+
+    dict(subject="DSA", difficulty="Medium", type="Coding", company="Amazon", topic="Strings",
+         text="How would you implement KMP string matching?",
+         answer="KMP builds a failure function (prefix table) that tells how far back to shift the pattern on a mismatch, avoiding re-scanning text characters. Build the prefix table in O(m) by comparing the pattern with itself. Search in O(n) by using the prefix table to skip redundant comparisons. Total: O(n+m) vs O(n·m) for brute force. The key insight is that the failure function captures the longest proper prefix that is also a suffix."),
+
+    dict(subject="DSA", difficulty="Medium", type="Coding", company="Microsoft", topic="Graphs",
+         text="How would you detect a cycle in a directed graph?",
+         answer="Use DFS with three states for each node: unvisited, in-progress (on current DFS path), completed. If DFS reaches an in-progress node, there is a cycle. Alternatively, use Kahn's algorithm for topological sort — if not all nodes are processed, a cycle exists. For undirected graphs, DFS cycle detection is simpler: if you revisit a node that is not the parent, there is a cycle."),
+
+    dict(subject="DSA", difficulty="Medium", type="Coding", company="Google", topic="Techniques",
+         text="How would you solve the 'trapping rain water' problem?",
+         answer="Two-pointer approach: maintain left and right pointers with running maxLeft and maxRight. At each step, move the pointer with the smaller max inward. Water at position i = min(maxLeft, maxRight) - height[i]. O(n) time, O(1) space. Alternatively, use a stack-based approach or precompute left_max and right_max arrays (O(n) space). The two-pointer solution is optimal."),
+
+    dict(subject="DSA", difficulty="Medium", type="Coding", company="Amazon", topic="Design",
+         text="How would you implement a min-stack that supports push, pop, top, and getMin in O(1)?",
+         answer="Use two stacks: one for actual values and one for tracking minimums. On push, push the value to the main stack and push min(value, current_min) to the min stack. On pop, pop from both. getMin returns the top of the min stack. Space-optimised variant: only push to min stack when the new value is <= current min. All operations are O(1) time."),
+
+    dict(subject="DSA", difficulty="Medium", type="Coding", company="Microsoft", topic="Trees",
+         text="How would you serialise and deserialise a binary tree?",
+         answer="Use preorder traversal. Serialise: visit root, recursively serialise left then right. Use a special marker (like '#') for null nodes. Join with commas. Deserialise: split the string, use a queue/iterator. Pop the first value — if it is '#', return null, otherwise create a node and recursively build left and right subtrees. BFS (level-order) also works. Both are O(n) time and space."),
+
+    dict(subject="DSA", difficulty="Hard", type="Conceptual", company="Google", topic="Advanced",
+         text="What is a segment tree and when would you use it?",
+         answer="A segment tree is a binary tree that stores information about array intervals. Each node represents a range and stores an aggregate (sum, min, max). Build in O(n), query any range in O(log n), update a point in O(log n). Used for range sum queries, range minimum queries, and problems requiring both updates and queries. Lazy propagation allows range updates in O(log n). Alternative: Fenwick tree (BIT) for simpler range sum problems."),
+
+    dict(subject="DSA", difficulty="Hard", type="Conceptual", company="Amazon", topic="Graphs",
+         text="What is the difference between Dijkstra's and Bellman-Ford algorithms?",
+         answer="Dijkstra's finds shortest paths from a source with non-negative edge weights in O((V+E) log V) using a min-heap. Bellman-Ford handles negative weights in O(V·E) and can detect negative cycles. Dijkstra's is faster but fails with negative edges. For graphs with negative edges but no negative cycles, use Bellman-Ford. For all-pairs shortest paths, use Floyd-Warshall O(V³)."),
+
+    dict(subject="DSA", difficulty="Hard", type="Coding", company="Google", topic="DP",
+         text="How would you solve the coin change problem (minimum coins)?",
+         answer="DP approach: dp[i] = minimum coins to make amount i. Initialise dp[0]=0, all others = infinity. For each coin, for each amount from coin to target: dp[amount] = min(dp[amount], dp[amount-coin] + 1). Return dp[target] or -1 if infinity. Time: O(amount × num_coins), Space: O(amount). This is a classic unbounded knapsack variant. BFS also works by treating amounts as graph nodes."),
+
+    dict(subject="DSA", difficulty="Hard", type="Coding", company="Amazon", topic="DP",
+         text="How would you find the length of the longest increasing subsequence (LIS)?",
+         answer="O(n²) DP: dp[i] = length of LIS ending at index i. For each i, check all j < i: if arr[j] < arr[i], dp[i] = max(dp[i], dp[j]+1). O(n log n) optimised: maintain a list of smallest tail elements for subsequences of each length. Use binary search (bisect_left) to find the position to update. The length of this list is the LIS length."),
+
+    dict(subject="DSA", difficulty="Hard", type="Coding", company="Google", topic="Backtracking",
+         text="How would you solve the N-Queens problem?",
+         answer="Use backtracking: place queens row by row. For each row, try each column. Check safety by tracking which columns, left diagonals (row-col) and right diagonals (row+col) are occupied using sets. If safe, place the queen and recurse to the next row. If no column works, backtrack. Time complexity: O(N!) in the worst case but pruning makes it much faster in practice. Return all valid board configurations."),
+
+    dict(subject="DSA", difficulty="Hard", type="Situational", company="Google", topic="Design",
+         text="You need to design a real-time autocomplete system that handles millions of queries per second. What data structure and architecture would you use?",
+         answer="Use a Trie for prefix-based lookup. Augment each node with top-K suggestions (precomputed). For scale, shard the Trie by first characters across servers. Cache popular prefixes in Redis. Use a two-level approach: client-side caching for recent queries, server-side Trie for completions. Update suggestions asynchronously from query logs. Consider using a ternary search tree for memory efficiency."),
+
+    dict(subject="DSA", difficulty="Hard", type="Situational", company="Amazon", topic="Design",
+         text="You need to implement a rate limiter that allows at most N requests per minute per user. Which algorithm and data structure would you choose?",
+         answer="Sliding window counter or token bucket algorithm. Sliding window: store timestamps in a deque per user, remove timestamps older than 1 minute, reject if size >= N. Token bucket: each user gets N tokens per minute, each request consumes one token, tokens refill at a fixed rate. For distributed systems, use Redis with atomic operations. Consider fixed window for simplicity but it has boundary issues. Token bucket allows bursts while maintaining average rate."),
+
+    # ─────────────────────────────────────────
+    # PYTHON — 35 new questions
+    # ─────────────────────────────────────────
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="TCS", topic="Data Model",
+         text="What are dunder (magic) methods in Python? Give three examples.",
+         answer="Dunder methods (double underscore, e.g., __init__, __str__, __len__) are special methods that Python calls implicitly for operations like object creation, string representation, and operator overloading. __init__ initialises objects, __str__ returns a readable string (used by print), __len__ enables len(). They let your custom classes work with built-in Python syntax and functions."),
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="Wipro", topic="Functions",
+         text="What is a lambda function in Python and when would you use it?",
+         answer="A lambda is an anonymous, single-expression function: lambda x: x*2. Used for short operations in map(), filter(), sorted() key functions, and as callback arguments. They cannot contain statements or multiple expressions. For complex logic, use regular def functions. Overusing lambdas hurts readability — PEP 8 discourages assigning lambdas to variables."),
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="Infosys", topic="Collections",
+         text="What are Counter, defaultdict and deque from Python's collections module?",
+         answer="Counter counts element frequencies: Counter('hello') gives {'l':2, ...}. defaultdict provides default values for missing keys, avoiding KeyError: defaultdict(list) auto-creates empty lists. deque (double-ended queue) supports O(1) append/pop from both ends — useful for queues, sliding windows, and BFS. All three are heavily used in interviews and data processing."),
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="Any", topic="Strings",
+         text="What are f-strings and how do they compare to other string formatting methods?",
+         answer="F-strings (f'Hello {name}') were introduced in Python 3.6. They are the fastest and most readable formatting method. Compared to %-formatting ('Hello %s' % name) and .format('Hello {}'.format(name)), f-strings allow arbitrary expressions inside braces, support format specs (f'{pi:.2f}'), and are evaluated at runtime. They are the recommended approach in modern Python."),
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="TCS", topic="OOP",
+         text="What is the property decorator in Python?",
+         answer="@property makes a method accessible like an attribute, enabling getter/setter/deleter patterns. It provides a clean API while allowing validation, computation, or access control behind the scenes. Example: @property def age(self): return self._age, with @age.setter for validation. This follows encapsulation principles without forcing users to call getter/setter methods explicitly."),
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="Any", topic="OOP",
+         text="What are dataclasses in Python and when would you use them?",
+         answer="Dataclasses (@dataclass decorator, Python 3.7+) auto-generate __init__, __repr__, __eq__ and optionally __hash__ and comparison methods from class attributes with type annotations. Use them for data-holding classes (DTOs, configs, records). They reduce boilerplate. For immutable data, use frozen=True. NamedTuples are an alternative for simpler cases."),
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="Wipro", topic="Types",
+         text="What are type hints in Python and why should you use them?",
+         answer="Type hints annotate expected types: def greet(name: str) -> str. They do not enforce types at runtime but enable static analysis tools (mypy, pyright) to catch type errors before execution. Benefits: better IDE autocompletion, clearer documentation, easier refactoring. Use typing module for complex types: List[int], Optional[str], Dict[str, Any], Union, Callable."),
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="Infosys", topic="Fundamentals",
+         text="What is the walrus operator (:=) and when is it useful?",
+         answer="The walrus operator (:=) assigns a value to a variable as part of an expression (Python 3.8+). Example: if (n := len(data)) > 10: print(n). It avoids computing the same expression twice. Useful in while loops (while chunk := file.read(8192)), list comprehensions with filtering, and conditional assignments. Use sparingly — readability should come first."),
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="Any", topic="OOP",
+         text="What are __slots__ in Python classes and why would you use them?",
+         answer="__slots__ declares a fixed set of attributes for a class, preventing __dict__ creation. Benefits: 20-30% less memory per instance and slightly faster attribute access. Use when creating millions of instances (e.g., data processing). Limitation: cannot add arbitrary attributes at runtime, and subclasses need their own __slots__ declaration. Not necessary for most classes."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Google", topic="Functions",
+         text="What is a closure in Python and give a practical example?",
+         answer="A closure is a function that remembers the variables from its enclosing scope even after that scope has finished executing. Example: def make_multiplier(n): return lambda x: x * n. multiply_by_3 = make_multiplier(3) — the inner lambda 'closes over' n=3. Used in decorators, callbacks, partial application, and factory functions. The 'nonlocal' keyword allows modifying enclosed variables."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Amazon", topic="Modules",
+         text="What is functools.lru_cache and when would you use it?",
+         answer="@lru_cache (Least Recently Used cache) memoises function results based on arguments. It caches the return value for each unique set of arguments. Perfect for recursive functions (fibonacci) and expensive computations that are called repeatedly with the same inputs. lru_cache(maxsize=None) gives unlimited cache. Use cache_info() to check hit/miss rates. Arguments must be hashable."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Advanced",
+         text="What are metaclasses in Python and when would you use them?",
+         answer="A metaclass is the class of a class — it controls class creation. When Python encounters a class definition, it calls the metaclass's __new__ and __init__. Use cases: registering classes automatically (plugin systems), enforcing coding standards, auto-adding methods or validations, and implementing ORMs (SQLAlchemy's declarative base). Most developers rarely need metaclasses — 'if you're wondering whether you need them, you don't.'"),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Any", topic="OOP",
+         text="What are Abstract Base Classes (ABCs) in Python?",
+         answer="ABCs (from abc module) define interfaces that subclasses must implement. Decorate methods with @abstractmethod to prevent instantiation of the ABC and enforce implementation in subclasses. Used to define contracts: class Shape(ABC): @abstractmethod def area(self): pass. Collections ABCs (Iterable, Mapping) let you check if objects implement protocols. They bring some of the benefits of static typing to Python."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Google", topic="Advanced",
+         text="What is the difference between iterators and iterables in Python?",
+         answer="An iterable has an __iter__ method that returns an iterator (lists, strings, dicts). An iterator has __iter__ (returns self) and __next__ (returns next value or raises StopIteration). Iterators are lazy — they produce values on demand. A for loop calls iter() on the iterable to get an iterator, then calls next() until StopIteration. Generators are a convenient way to create iterators."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Amazon", topic="Advanced",
+         text="What is the mutable default argument trap in Python?",
+         answer="Default mutable arguments (lists, dicts) are created once at function definition, not per call. def append_to(element, lst=[]): lst.append(element); return lst — repeated calls share the same list! Fix: use None as default and create the mutable inside the function. This is because default values are stored as function attributes and persist across calls."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Any", topic="Modules",
+         text="What is the itertools module and name five useful functions?",
+         answer="itertools provides memory-efficient iterator-building blocks. Key functions: chain (concatenate iterables), product (Cartesian product), combinations/permutations (combinatorics), groupby (group consecutive elements), islice (slice iterators), accumulate (running totals), zip_longest (zip with fill). They are lazy (generate values on demand) and composable. Essential for elegant solutions to iteration problems."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Testing",
+         text="What is the difference between pytest and unittest, and which do you prefer?",
+         answer="unittest is built-in, class-based, uses self.assertEqual-style assertions. pytest uses plain assert statements, auto-discovers tests, has powerful fixtures (@pytest.fixture), parametrize for test cases, and rich plugins. pytest is simpler, more Pythonic and has a better ecosystem. It can also run unittest-style tests. pytest is the industry standard for Python testing."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Any", topic="Performance",
+         text="How do you profile Python code to find performance bottlenecks?",
+         answer="cProfile: built-in profiler showing function call counts and time. line_profiler (@profile decorator) shows time per line. memory_profiler shows memory usage per line. py-spy: sampling profiler that attaches to running processes without modification. timeit: for micro-benchmarks. Workflow: profile first (do not guess), optimise the hotspot, and re-profile. 'Premature optimisation is the root of all evil.'"),
+
+    dict(subject="Python", difficulty="Medium", type="Coding", company="Google", topic="Advanced",
+         text="How would you implement a custom context manager in Python?",
+         answer="Two approaches: 1) Class-based: implement __enter__ (return resource) and __exit__ (cleanup, handle exceptions). 2) Generator-based: use @contextlib.contextmanager decorator with a function that yields. Code before yield is setup, after yield is cleanup. Example: @contextmanager def timer(): start=time.time(); yield; print(f'Took {time.time()-start}s'). Generator-based is more concise for simple cases."),
+
+    dict(subject="Python", difficulty="Medium", type="Coding", company="Amazon", topic="Data",
+         text="How would you efficiently read and process a 10GB CSV file in Python?",
+         answer="Use chunked reading: pd.read_csv('file.csv', chunksize=100000) returns an iterator of DataFrames. Process each chunk and aggregate results. For even more efficiency: use polars (Rust-based, faster than pandas), dask for parallel processing, or Python's csv module with generators for memory-efficient row-by-row reading. Specify dtypes upfront to reduce memory. Consider pyarrow for columnar reading."),
+
+    dict(subject="Python", difficulty="Medium", type="Coding", company="Microsoft", topic="Patterns",
+         text="How would you implement the observer pattern in Python?",
+         answer="Create a Subject class with a list of observers, methods to add/remove observers, and a notify method that calls update() on each observer. Observers implement an update method. Alternatively, use Python's built-in mechanisms: callbacks (list of callables), signals (using blinker library), or property setters that trigger notifications. For simple cases, just pass callback functions."),
+
+    dict(subject="Python", difficulty="Hard", type="Conceptual", company="Google", topic="Advanced",
+         text="Explain Python's descriptor protocol and how property works under the hood.",
+         answer="Descriptors implement __get__, __set__, and/or __delete__. When accessed as class attributes, Python calls these methods instead of returning the descriptor object. Data descriptors (with __set__) take priority over instance __dict__. Non-data descriptors (only __get__) do not. @property is implemented as a data descriptor. This protocol powers property, classmethod, staticmethod, and ORM field types like SQLAlchemy columns."),
+
+    dict(subject="Python", difficulty="Hard", type="Conceptual", company="Amazon", topic="Concurrency",
+         text="Explain Python's asyncio event loop and how async/await works internally.",
+         answer="asyncio uses a single-threaded event loop that manages coroutines. async def creates a coroutine; await suspends it and returns control to the event loop, which can run other coroutines. Under the hood, coroutines are generators using yield from. The event loop uses selectors (epoll/kqueue) for I/O multiplexing. asyncio.gather() runs coroutines concurrently. It excels for I/O-bound tasks (network, file I/O) but does not help with CPU-bound work."),
+
+    dict(subject="Python", difficulty="Hard", type="Conceptual", company="Google", topic="Memory",
+         text="How does Python's memory management work internally?",
+         answer="Python uses a private heap for all objects. The memory allocator (pymalloc) manages small objects (< 512 bytes) using arenas, pools and blocks, avoiding frequent OS system calls. Reference counting is the primary GC mechanism — objects are freed when refcount hits zero. A generational garbage collector handles reference cycles, scanning younger objects more frequently. The GIL ensures thread safety for refcount operations."),
+
+    dict(subject="Python", difficulty="Hard", type="Situational", company="Google", topic="Performance",
+         text="A Python data pipeline processes 50 million records daily and is too slow. How would you optimise it?",
+         answer="Profile first to find bottlenecks. Potential optimisations: use vectorised pandas/numpy operations instead of loops, switch to polars for faster DataFrame operations, use multiprocessing for CPU-bound steps, async I/O for network calls, batch database writes, use generators/iterators to reduce memory, consider Cython or numba for hot loops, and cache intermediate results. If still insufficient, consider Spark or distributed computing."),
+
+    dict(subject="Python", difficulty="Hard", type="Situational", company="Amazon", topic="Debugging",
+         text="A Python service has a memory leak that causes it to crash every few days. How would you diagnose it?",
+         answer="Use tracemalloc to track memory allocations and find the top allocation sites. Use objgraph to visualise object reference graphs and find unexpected references preventing garbage collection. Check for: circular references, global caches without size limits, event handler accumulation, unclosed file handles or database connections, and C extension memory leaks. Monitor with memory_profiler and set up alerts on memory usage trends."),
+
+    dict(subject="Python", difficulty="Hard", type="Situational", company="Microsoft", topic="Architecture",
+         text="You need to build a Python microservice that handles 5000 concurrent WebSocket connections. What framework and architecture would you use?",
+         answer="Use an async framework: FastAPI with uvicorn (ASGI), or raw asyncio with websockets library. The async event loop handles thousands of connections on a single thread efficiently. Use Redis pub/sub for message broadcasting across multiple server instances. Deploy multiple workers behind a load balancer (with sticky sessions or shared state). Monitor connection counts, memory per connection, and implement heartbeat/keepalive."),
+
+    # ─────────────────────────────────────────
+    # STATISTICS — 35 new questions
+    # ─────────────────────────────────────────
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="TCS", topic="Distributions",
+         text="What is a Bernoulli distribution and how does it relate to the Binomial distribution?",
+         answer="Bernoulli distribution models a single trial with two outcomes (success with probability p, failure with 1-p). The Binomial distribution is the sum of n independent Bernoulli trials — it models the number of successes in n trials. Mean of Binomial: np, Variance: np(1-p). Binomial is used for: defect rates, click-through rates, pass/fail counts."),
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="Wipro", topic="Distributions",
+         text="What is a Poisson distribution and when do you use it?",
+         answer="Poisson distribution models the number of events in a fixed interval when events occur independently at a constant average rate lambda. P(k) = (lambda^k * e^-lambda) / k!. Mean = Variance = lambda. Used for: number of customer arrivals per hour, number of errors per page, number of calls to a call centre. It approximates Binomial when n is large and p is small."),
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="Infosys", topic="Fundamentals",
+         text="What are percentiles and quartiles?",
+         answer="Percentiles divide data into 100 equal parts. The 50th percentile is the median. The 25th and 75th percentiles are Q1 and Q3. Quartiles divide data into four parts: Q1 (25%), Q2 (50%/median), Q3 (75%). The Interquartile Range (IQR = Q3-Q1) measures spread and is used for outlier detection: values below Q1-1.5*IQR or above Q3+1.5*IQR are outliers."),
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="Any", topic="Fundamentals",
+         text="What is expected value and why is it important?",
+         answer="Expected value E(X) is the probability-weighted average of all possible outcomes: sum of x*P(x). It represents the long-run average if the experiment is repeated infinitely. Important in decision-making, risk assessment, and ML loss functions. Example: if a game pays $10 with probability 0.3 and $0 otherwise, E(X) = $3. It does not have to be an observable outcome."),
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="TCS", topic="Fundamentals",
+         text="What is the Law of Large Numbers?",
+         answer="The Law of Large Numbers states that as sample size increases, the sample mean converges to the population mean. The weak version says convergence is in probability; the strong version says almost sure convergence. Practical implication: larger samples give more reliable estimates. It is why casinos always profit long-term despite individual wins and why polling becomes more accurate with more respondents."),
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="Wipro", topic="Descriptive",
+         text="What are skewness and kurtosis?",
+         answer="Skewness measures asymmetry of a distribution. Positive skew: tail extends right (median < mean). Negative skew: tail extends left (mean < median). Zero skew: symmetric. Kurtosis measures tail heaviness. High kurtosis (leptokurtic): heavy tails, more outliers. Low kurtosis (platykurtic): light tails. Normal distribution has kurtosis = 3 (excess kurtosis = 0). Both affect which statistical tests are appropriate."),
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="Any", topic="Inference",
+         text="What is the difference between a population and a sample?",
+         answer="A population is the entire group you want to study. A sample is a subset drawn from the population. We use samples because studying entire populations is usually impractical. Sample statistics (mean, std) estimate population parameters. The quality of estimation depends on sample size and sampling method. Key: a representative, random sample is more important than a large biased sample."),
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="Infosys", topic="Inference",
+         text="What is a sampling distribution?",
+         answer="A sampling distribution is the distribution of a statistic (like the sample mean) computed from many random samples of the same size from a population. The Central Limit Theorem says the sampling distribution of the mean is approximately normal for large samples, regardless of the population distribution. Its standard deviation (standard error) decreases with sqrt(n), showing larger samples give more precise estimates."),
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="Any", topic="Probability",
+         text="What is Bayes' theorem and give a practical example?",
+         answer="Bayes' theorem: P(A|B) = P(B|A) * P(A) / P(B). It updates the probability of a hypothesis given new evidence. Example: a disease test is 99% accurate, disease prevalence is 1%. If you test positive, P(disease|positive) = (0.99 * 0.01) / (0.99*0.01 + 0.01*0.99) = 50%, not 99%. This shows why prior probability matters and explains why rare disease screening has high false positive rates."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Google", topic="Testing",
+         text="What is the Chi-squared test and when do you use it?",
+         answer="Chi-squared test compares observed vs expected frequencies. Test of independence: are two categorical variables related? (e.g., is gender related to product preference). Goodness-of-fit: does data fit a distribution? Test statistic: sum of (observed-expected)² / expected. High chi-squared = significant difference. Degrees of freedom: (rows-1)*(cols-1). Assumes expected counts >= 5 in each cell."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Amazon", topic="Testing",
+         text="What is ANOVA and when would you use it instead of t-tests?",
+         answer="ANOVA (Analysis of Variance) tests if means of 3+ groups are significantly different. One-way ANOVA compares groups on one factor; two-way on two factors. It compares between-group variance to within-group variance (F-statistic). Using multiple t-tests inflates Type I error rate; ANOVA controls this. Assumptions: normality, homogeneity of variance, independence. Post-hoc tests (Tukey) identify which groups differ."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Google", topic="Methods",
+         text="What is the bootstrap method and why is it useful?",
+         answer="Bootstrap creates many samples by drawing with replacement from the original sample, computing the statistic on each. This builds an empirical sampling distribution without assumptions about the population. Useful for: confidence intervals, standard errors, hypothesis testing when parametric assumptions are violated. It works for complex statistics (median, correlation, model performance). Requires a reasonably representative original sample."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Any", topic="Estimation",
+         text="What is Maximum Likelihood Estimation (MLE)?",
+         answer="MLE finds the parameter values that maximise the likelihood (probability) of observing the given data. For a normal distribution, MLE gives the sample mean and variance. Process: write the likelihood function, take its log (log-likelihood), find the maximum by setting the derivative to zero or using numerical optimisation. MLE estimates are consistent, asymptotically efficient, and asymptotically normal. Most ML training is a form of MLE."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Testing",
+         text="What is the Mann-Whitney U test and when would you use it?",
+         answer="Mann-Whitney U is a non-parametric test comparing two independent groups when data is not normally distributed. It tests whether one group tends to have larger values than the other (compares medians/distributions). It uses ranks instead of raw values. Use it when: sample is small, data is ordinal, or normality assumption is violated. It is the non-parametric equivalent of the independent t-test."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Google", topic="Effect Size",
+         text="What is effect size and why is it important beyond p-values?",
+         answer="Effect size measures the magnitude of a difference or relationship, independent of sample size. Cohen's d: (mean1-mean2)/pooled_std (small=0.2, medium=0.5, large=0.8). With large samples, even trivially small differences can be statistically significant. Effect size tells you if the difference is practically meaningful. Always report effect size alongside p-values for proper interpretation."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Any", topic="Regression",
+         text="What is heteroscedasticity and why does it matter in regression?",
+         answer="Heteroscedasticity means the variance of residuals is not constant across values of independent variables (e.g., prediction errors increase with income). It violates OLS assumptions, leading to biased standard errors, unreliable confidence intervals and p-values (coefficients are still unbiased but inefficient). Detect with Breusch-Pagan test. Fix with: weighted least squares, robust standard errors, or log-transforming the dependent variable."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Amazon", topic="Paradoxes",
+         text="What is Simpson's Paradox and give an example?",
+         answer="Simpson's Paradox occurs when a trend in several subgroups reverses when the groups are combined. Classic example: Treatment A appears better overall, but Treatment B is better in every subgroup — because Treatment B was given more often to the harder cases. It arises from confounding variables. The lesson: always check if aggregated data hides important group-level differences. It is why stratified analysis matters."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Google", topic="Design",
+         text="How do you calculate the required sample size for an A/B test?",
+         answer="Sample size depends on: significance level alpha (typically 0.05), desired power (typically 0.8), minimum detectable effect (MDE), and baseline metric variance. Formula for proportions: n = (Z_alpha/2 + Z_beta)² * 2 * p(1-p) / MDE². Smaller effects need larger samples. Higher power needs larger samples. Use online calculators or scipy.stats. Always determine sample size before running the test, not after."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Any", topic="Distributions",
+         text="What is the difference between PDF, PMF, and CDF?",
+         answer="PMF (Probability Mass Function) gives the probability of each discrete value: P(X=k). PDF (Probability Density Function) gives the density for continuous variables — probability is the area under the curve, not the point value. CDF (Cumulative Distribution Function) gives P(X <= x) for both types. CDF is always non-decreasing from 0 to 1. PDF is the derivative of CDF; PMF values sum to 1."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Probability",
+         text="What are joint, marginal, and conditional distributions?",
+         answer="Joint distribution P(X,Y) describes the probability of X and Y occurring together. Marginal distribution P(X) is obtained by summing/integrating over Y: P(X) = sum P(X,Y) over all Y. Conditional distribution P(X|Y) is the distribution of X given Y: P(X|Y) = P(X,Y)/P(Y). Independence means P(X,Y) = P(X)*P(Y). Understanding these is fundamental to Bayesian inference and probabilistic modelling."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Any", topic="Sampling",
+         text="What are the main sampling methods and when would you use each?",
+         answer="Simple random: every element has equal chance — gold standard but may miss subgroups. Stratified: divide population into strata, sample from each — ensures representation of subgroups. Cluster: randomly select groups, sample all within — efficient for geographically dispersed populations. Systematic: every kth element — simple but risks periodicity bias. Convenience sampling is biased and should be avoided in research."),
+
+    dict(subject="Stats", difficulty="Medium", type="Coding", company="Google", topic="Methods",
+         text="How would you implement a bootstrap confidence interval in Python?",
+         answer="Draw B bootstrap samples (e.g., B=10000) by sampling with replacement from the original data (using np.random.choice with replace=True). Compute the statistic (mean, median, etc.) on each bootstrap sample. Sort the B statistics and take the 2.5th and 97.5th percentiles for a 95% CI (percentile method). For bias-corrected intervals, use the BCa method from scipy or arch library."),
+
+    dict(subject="Stats", difficulty="Hard", type="Conceptual", company="Google", topic="Stochastic",
+         text="What is a Markov chain and where is it used in data science?",
+         answer="A Markov chain is a stochastic process where the next state depends only on the current state (memoryless property). Defined by states and transition probabilities. Used in: PageRank algorithm, MCMC sampling for Bayesian inference, hidden Markov models for sequence analysis, text generation, reinforcement learning, and customer journey modelling. Stationary distribution exists for ergodic chains."),
+
+    dict(subject="Stats", difficulty="Hard", type="Conceptual", company="Amazon", topic="Survival",
+         text="What is survival analysis and when would you use it?",
+         answer="Survival analysis models time-to-event data with censoring (some subjects have not experienced the event yet). Key concepts: survival function S(t) = P(T > t), hazard function h(t) = instantaneous event rate. Methods: Kaplan-Meier (non-parametric survival curve), Cox proportional hazards (relates covariates to hazard). Used for: customer churn prediction, medical trial outcomes, equipment failure prediction, and subscription cancellation."),
+
+    dict(subject="Stats", difficulty="Hard", type="Conceptual", company="Google", topic="Testing",
+         text="What is the Bonferroni correction and what are its alternatives?",
+         answer="When performing m hypothesis tests, the probability of at least one false positive increases (family-wise error rate). Bonferroni correction divides alpha by m: reject if p < alpha/m. It is simple but very conservative — reduces power significantly. Alternatives: Holm-Bonferroni (step-down, less conservative), Benjamini-Hochberg (controls False Discovery Rate instead of FWER, more powerful for many tests), and permutation-based corrections."),
+
+    dict(subject="Stats", difficulty="Hard", type="Conceptual", company="Meta", topic="Regression",
+         text="Explain the assumptions of logistic regression from a statistical perspective.",
+         answer="Logistic regression assumes: 1) Binary or ordinal outcome. 2) Linear relationship between log-odds and predictors. 3) Independence of observations. 4) No multicollinearity among predictors. 5) Large sample size (minimum 10-20 events per predictor). It does NOT assume normality of residuals or homoscedasticity. Violations: non-linearity can be addressed with polynomial terms or splines; multicollinearity with VIF analysis and feature removal."),
+
+    dict(subject="Stats", difficulty="Hard", type="Situational", company="Google", topic="Experimentation",
+         text="Your A/B test has been running for two weeks but has not reached statistical significance. Your PM wants to either extend the test or declare no effect. What do you advise?",
+         answer="First check: was the test properly powered for the expected effect size? If underpowered, extending is valid but calculate the new required duration. Consider if the MDE was realistic — maybe the true effect is smaller than hypothesised. Check for implementation bugs, segment-level effects, and metric validity. If properly powered and no significance, this IS a result — there is likely no meaningful effect. Do not keep extending hoping for significance (that is p-hacking). Report the confidence interval of the effect to show what effect sizes are ruled out."),
+
+    dict(subject="Stats", difficulty="Hard", type="Situational", company="Amazon", topic="Analysis",
+         text="You notice that a key metric improved dramatically last week. How would you statistically validate whether this is a real change or noise?",
+         answer="Compute confidence intervals for the metric before and after — check if they overlap. Run a hypothesis test comparing the two periods. Check for seasonal effects by comparing to the same period last year. Look for confounding events (marketing campaign, bug fix, external factors). Use change point detection algorithms. Verify data quality — check for logging changes, missing data, or calculation errors. A single week may have high variance — look at the trend."),
+
+    dict(subject="Stats", difficulty="Hard", type="Situational", company="Meta", topic="Design",
+         text="You are designing an A/B test for a feature that might have network effects (e.g., a social media feature). Standard randomisation will not work. What do you do?",
+         answer="Standard user-level randomisation causes interference (one user's treatment affects another's outcome). Solutions: cluster-based randomisation (randomise at city, region, or social cluster level), switchback experiments (alternate treatment/control over time periods), ego-network randomisation, or use interference-aware causal inference methods. Tradeoffs: cluster randomisation has fewer independent units (lower power); switchback has temporal confounds. Consider simulation to estimate required sample size."),
+
+    # ─────────────────────────────────────────
+    # NLP — 35 new questions
+    # ─────────────────────────────────────────
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="TCS", topic="Preprocessing",
+         text="What are the typical steps in a text preprocessing pipeline?",
+         answer="Typical steps: lowercasing, removing punctuation/special characters, tokenisation, removing stop words, stemming or lemmatisation, handling contractions, removing HTML tags and URLs. Order matters — tokenise before removing stop words. For deep learning models, minimal preprocessing is often better since models like BERT learn from raw text. Always validate that preprocessing does not remove important signal."),
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="Wipro", topic="Models",
+         text="What are N-gram models and what are their limitations?",
+         answer="N-gram models predict the next word based on the previous N-1 words. Bigrams use one previous word, trigrams use two. They use conditional probability: P(w_n | w_{n-1}, ..., w_{n-N+1}). Limitations: they cannot capture long-range dependencies, suffer from data sparsity for large N, and the vocabulary explosion problem. Smoothing techniques (Laplace, Kneser-Ney) handle unseen N-grams. Largely replaced by neural language models."),
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="Any", topic="Architectures",
+         text="What is the encoder-decoder architecture in NLP?",
+         answer="Encoder-decoder consists of two parts: the encoder processes the input sequence into a fixed context representation, and the decoder generates the output sequence from that representation. Originally used with RNNs/LSTMs for machine translation (seq2seq). The bottleneck of fixed-size context was solved by attention mechanism. Transformers use this architecture: BERT is encoder-only, GPT is decoder-only, T5 is encoder-decoder."),
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="Infosys", topic="Tasks",
+         text="What is text classification and what are the common approaches?",
+         answer="Text classification assigns labels to text documents. Approaches: traditional ML (TF-IDF + logistic regression/SVM — still strong baselines), CNN-based (text convolutions capture n-gram patterns), RNN/LSTM (capture sequential information), and transformer-based (fine-tune BERT, RoBERTa for state-of-the-art). For few labels, zero/few-shot with LLMs works well. Evaluation: accuracy, F1 (especially for imbalanced classes), confusion matrix."),
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="TCS", topic="Embeddings",
+         text="What is the difference between static and contextual word embeddings?",
+         answer="Static embeddings (Word2Vec, GloVe) assign a single fixed vector per word regardless of context — 'bank' has the same vector in 'river bank' and 'bank account'. Contextual embeddings (BERT, ELMo, GPT) generate different vectors for the same word based on its context. Contextual embeddings capture polysemy and nuance, leading to significantly better performance on most NLP tasks."),
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="Any", topic="Generation",
+         text="What do temperature, top-k, and top-p mean in text generation?",
+         answer="Temperature scales logits before softmax: higher temperature (>1) makes outputs more random/creative, lower (<1) makes them more focused/deterministic. Top-k sampling restricts choices to the k most probable tokens. Top-p (nucleus sampling) restricts to the smallest set of tokens whose cumulative probability exceeds p. These are decoding strategies that trade off diversity vs coherence in generated text."),
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="Wipro", topic="Evaluation",
+         text="What are BLEU and ROUGE scores?",
+         answer="BLEU (Bilingual Evaluation Understudy) measures how many n-grams in generated text match the reference — used for machine translation. ROUGE (Recall-Oriented Understudy) measures overlap between generated and reference summaries, focusing on recall — used for summarisation. BLEU emphasises precision; ROUGE emphasises recall. Both are imperfect: they miss semantic similarity and penalise valid paraphrases."),
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="Any", topic="Tokenisation",
+         text="What is Byte Pair Encoding (BPE) and why is it used for tokenisation?",
+         answer="BPE starts with individual characters and iteratively merges the most frequent adjacent pairs to form subword tokens. It balances between character-level (handles any word) and word-level (captures semantics) tokenisation. It handles out-of-vocabulary words by breaking them into known subwords. Used by GPT models. SentencePiece (used by BERT, T5) is a similar subword tokenisation algorithm."),
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="Infosys", topic="Tasks",
+         text="What is the difference between information extraction and information retrieval?",
+         answer="Information retrieval (IR) finds relevant documents from a collection given a query (search engines). Information extraction (IE) identifies structured information from unstructured text — named entities, relationships, events. IR returns documents; IE returns structured data. Example: searching for 'Apple CEO' is IR; extracting 'CEO(Apple, Tim Cook)' from a news article is IE. They are complementary in modern NLP systems."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Google", topic="Transformers",
+         text="What is positional encoding in transformers and why is it needed?",
+         answer="Transformers process all tokens in parallel (no recurrence), so they have no inherent notion of position. Positional encoding adds position information to token embeddings. Original transformers use sinusoidal functions of different frequencies for each dimension. BERT uses learned positional embeddings. RoPE (Rotary Position Embedding) is used in modern LLMs for better length generalisation. Without positional encoding, 'dog bites man' and 'man bites dog' would have the same representation."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Google", topic="Transformers",
+         text="How does multi-head attention work in transformers?",
+         answer="Multi-head attention runs several attention mechanisms in parallel, each with different learned projections (queries Q, keys K, values V). Each head can attend to different aspects of the input (syntactic, semantic, positional). Outputs are concatenated and linearly transformed. Formula per head: Attention(Q,K,V) = softmax(QK^T/sqrt(d_k))V. Typically 8-16 heads. It is richer than single attention because it captures multiple types of relationships simultaneously."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Amazon", topic="Topic Modelling",
+         text="What is topic modelling and compare LDA with BERTopic.",
+         answer="Topic modelling discovers abstract topics in a document collection. LDA (Latent Dirichlet Allocation) is a probabilistic generative model that assumes documents are mixtures of topics, and topics are distributions over words. BERTopic uses transformer embeddings, UMAP for dimensionality reduction, and HDBSCAN for clustering, then extracts topic words using c-TF-IDF. BERTopic produces more coherent topics and handles short texts better. LDA is simpler and more interpretable."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Google", topic="LLMs",
+         text="What is prompt engineering and what are key strategies?",
+         answer="Prompt engineering crafts input prompts to elicit desired LLM behaviour. Strategies: be specific and explicit, provide examples (few-shot), use role-playing ('You are an expert...'), chain-of-thought prompting ('Think step by step'), output format specification (JSON, bullet points), negative instructions ('Do not...'), and temperature/token limit tuning. Effective prompting can dramatically improve LLM performance without any fine-tuning."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Meta", topic="LLMs",
+         text="What is chain-of-thought prompting and why does it improve LLM reasoning?",
+         answer="Chain-of-thought (CoT) prompting instructs the LLM to show intermediate reasoning steps before giving the final answer. 'Let's think step by step' or providing worked examples with reasoning. It improves performance on math, logic, and multi-step reasoning tasks by breaking complex problems into manageable steps. Zero-shot CoT (just adding 'think step by step') works surprisingly well. It works because it keeps intermediate results in context."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Google", topic="LLMs",
+         text="What is RLHF (Reinforcement Learning from Human Feedback) and why is it important?",
+         answer="RLHF fine-tunes language models to align with human preferences. Process: 1) Collect human rankings of model outputs. 2) Train a reward model to predict human preferences. 3) Use PPO (Proximal Policy Optimisation) to fine-tune the LM to maximise the reward model's score. It makes models more helpful, harmless, and honest. Used in ChatGPT, Claude, and other aligned models. Alternatives: DPO (Direct Preference Optimisation) skips the reward model."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Amazon", topic="Tasks",
+         text="What is coreference resolution and why is it important?",
+         answer="Coreference resolution identifies when different expressions refer to the same entity. Example: 'John went to the store. He bought milk.' — 'He' refers to 'John'. It is crucial for: document understanding, information extraction, question answering, and summarisation. Without it, NLP systems lose track of who/what is being discussed. Modern approaches use span-based neural models and transformer representations."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Evaluation",
+         text="What is BERTScore and why is it better than BLEU for evaluating text generation?",
+         answer="BERTScore computes similarity between generated and reference text using contextual BERT embeddings, matching tokens greedily and computing precision, recall and F1 in embedding space. Unlike BLEU (which uses exact n-gram matching), BERTScore captures semantic similarity — 'happy' and 'joyful' score highly even though they share no n-grams. It correlates better with human judgments but is more computationally expensive."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Any", topic="Multilingual",
+         text="What are multilingual models like mBERT and XLM-R, and how do they work?",
+         answer="mBERT is BERT trained on Wikipedia in 104 languages with shared vocabulary and no explicit cross-lingual signal. XLM-R is trained on CommonCrawl data in 100 languages using a larger model and more data. Both learn cross-lingual representations — you can fine-tune on English and apply to other languages (zero-shot transfer). XLM-R generally outperforms mBERT. They enable NLP for low-resource languages without language-specific training data."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Google", topic="Tasks",
+         text="How do modern question answering systems work?",
+         answer="Extractive QA: given a passage and question, the model predicts start and end positions of the answer span (BERT-based). Generative QA: the model generates the answer text (T5, GPT). Open-domain QA combines retrieval (find relevant passages from a corpus) with a reader (extract/generate answer). RAG extends this by using retrieved passages as context for generation. Evaluation metrics: Exact Match and F1 (token overlap)."),
+
+    dict(subject="NLP", difficulty="Medium", type="Coding", company="Google", topic="Preprocessing",
+         text="How would you build a custom text preprocessing pipeline in Python?",
+         answer="Use a function chain: 1) re.sub() for regex-based cleaning (URLs, HTML, special chars). 2) .lower() for lowercasing. 3) Tokenise with nltk.word_tokenize or spaCy. 4) Remove stop words using nltk.corpus.stopwords. 5) Lemmatise with spaCy or WordNetLemmatizer. Wrap in a class with a transform() method for sklearn pipeline compatibility. For production, use spaCy's pipeline which handles tokenisation, POS tagging, and lemmatisation efficiently."),
+
+    dict(subject="NLP", difficulty="Medium", type="Coding", company="Amazon", topic="Similarity",
+         text="How would you compute semantic similarity between two sentences?",
+         answer="1) Encode both sentences using a sentence transformer model (sentence-transformers library, e.g., 'all-MiniLM-L6-v2'). 2) Compute cosine similarity between the two embedding vectors. Code: from sentence_transformers import SentenceTransformer; model = SentenceTransformer('all-MiniLM-L6-v2'); embeddings = model.encode([sent1, sent2]); similarity = cosine_similarity([embeddings[0]], [embeddings[1]]). For large-scale search, use FAISS for efficient nearest-neighbour lookup."),
+
+    dict(subject="NLP", difficulty="Hard", type="Conceptual", company="Google", topic="LLMs",
+         text="How does instruction tuning differ from standard fine-tuning, and why is it effective?",
+         answer="Standard fine-tuning trains on task-specific input-output pairs (e.g., sentiment labelled data). Instruction tuning trains on diverse tasks formatted as natural language instructions ('Classify the sentiment of: ...', 'Summarise: ...', 'Translate to French: ...'). It teaches the model to follow instructions generalising to unseen tasks. FLAN, InstructGPT and Alpaca use this approach. Combined with RLHF, it produces models that are both capable and aligned."),
+
+    dict(subject="NLP", difficulty="Hard", type="Conceptual", company="Meta", topic="Architecture",
+         text="What are the key differences between BERT, GPT, and T5 architectures?",
+         answer="BERT: encoder-only, bidirectional, trained with masked language modelling. Best for understanding tasks (classification, NER, QA). GPT: decoder-only, autoregressive (left-to-right), trained with next-token prediction. Best for generation. T5: encoder-decoder, treats every task as text-to-text. Versatile for both understanding and generation. Each has spawned many variants: RoBERTa, DeBERTa (BERT family); GPT-2/3/4 (GPT family); FLAN-T5, UL2 (T5 family)."),
+
+    dict(subject="NLP", difficulty="Hard", type="Conceptual", company="Google", topic="Augmentation",
+         text="What are text data augmentation techniques and when are they effective?",
+         answer="Techniques: synonym replacement (WordNet), random insertion/deletion/swap, back-translation (translate to another language and back), paraphrasing with LLMs, contextual augmentation (use BERT to replace words), mixup in embedding space, and EDA (Easy Data Augmentation). Effective when training data is limited. Less impactful for large pretrained models. Always validate that augmentation preserves labels and does not introduce noise."),
+
+    dict(subject="NLP", difficulty="Hard", type="Situational", company="Google", topic="Design",
+         text="You need to build a document search system over 10 million internal company documents. What architecture would you design?",
+         answer="Two-stage retrieval: 1) First stage: BM25 or dense retrieval (encode documents with a bi-encoder, store in FAISS/Milvus vector database, retrieve top-100 candidates). 2) Second stage: re-rank with a cross-encoder for higher accuracy on the candidates. Add metadata filtering, faceted search, and query expansion. For hybrid: combine sparse (BM25) and dense retrieval scores. Use incremental indexing for new documents. Monitor search quality with NDCG and user click-through metrics."),
+
+    dict(subject="NLP", difficulty="Hard", type="Situational", company="Amazon", topic="Deployment",
+         text="Your NLP model needs to support 15 languages but you only have labelled data in English. How would you approach this?",
+         answer="Use multilingual pretrained models (XLM-R, mBERT). Fine-tune on English labelled data and evaluate zero-shot transfer to other languages. For critical languages, use translate-train: machine-translate English training data to target languages and fine-tune. Collect a small evaluation set in each target language for proper assessment. Consider language-specific adapters for languages where zero-shot transfer is poor. Monitor per-language performance in production."),
+
+    dict(subject="NLP", difficulty="Hard", type="Situational", company="Meta", topic="Safety",
+         text="You are deploying an LLM-powered customer service chatbot. What safety measures would you implement?",
+         answer="Input guardrails: content moderation filter, prompt injection detection, PII redaction. Output guardrails: toxicity filter, factual grounding (RAG with verified knowledge base), confidence-based fallback to human agents. System design: restrict model capabilities (no code execution, no external API calls), log all conversations for audit, implement rate limiting, add user feedback mechanism. Regular red-teaming and adversarial testing. Human-in-the-loop for high-stakes decisions."),
+
+    # ─────────────────────────────────────────
+    # COMPUTER VISION — 35 new questions
+    # ─────────────────────────────────────────
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="TCS", topic="Fundamentals",
+         text="What are the common color spaces used in computer vision?",
+         answer="RGB: default for displays, three channels (Red, Green, Blue). HSV: Hue (color), Saturation, Value (brightness) — better for color-based segmentation. LAB: L (lightness), A and B (color opponents) — perceptually uniform, good for color comparison. Grayscale: single channel, used when color is not important. Converting between color spaces is common in preprocessing pipelines. OpenCV uses BGR by default."),
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="Wipro", topic="Image Processing",
+         text="What is edge detection and how do Canny and Sobel differ?",
+         answer="Edge detection identifies boundaries in images where pixel intensity changes sharply. Sobel applies directional gradient filters (horizontal and vertical) to detect edges, outputting gradient magnitude. Canny is a multi-stage algorithm: Gaussian smoothing, gradient computation, non-maximum suppression, and hysteresis thresholding. Canny produces cleaner, thinner edges and is more robust than Sobel. Both are foundational in traditional CV."),
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="Infosys", topic="Image Processing",
+         text="What are morphological operations in image processing?",
+         answer="Morphological operations process binary/grayscale images using a structuring element (kernel). Erosion: shrinks bright regions, removes small noise. Dilation: expands bright regions, fills small holes. Opening (erosion then dilation): removes small noise while preserving shape. Closing (dilation then erosion): fills small holes. Used for: noise removal, shape analysis, connected component extraction. Applied in OCR, medical imaging, and object detection preprocessing."),
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="Any", topic="Detection",
+         text="What is the difference between face detection and face recognition?",
+         answer="Face detection locates faces in an image — it answers 'where are the faces?' (bounding boxes). Face recognition identifies who the face belongs to — it answers 'whose face is this?' Detection is easier and comes first in the pipeline. Detection methods: Haar cascades, HOG+SVM, MTCNN, RetinaFace. Recognition methods: FaceNet (triplet loss), ArcFace (additive angular margin). Recognition requires a database of known faces."),
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="TCS", topic="Tasks",
+         text="What is Optical Character Recognition (OCR) and what are modern approaches?",
+         answer="OCR converts images of text into machine-readable text. Traditional: binarise, segment characters, classify each (template matching or SVM). Modern: end-to-end deep learning — CRNN (CNN for features + RNN for sequence) with CTC loss, or transformer-based models (TrOCR). Tesseract is a popular open-source OCR engine. Challenges: handwritten text, curved text, low resolution, and multilingual documents."),
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="Wipro", topic="Fundamentals",
+         text="What is image resolution and how does it affect model performance?",
+         answer="Image resolution is the number of pixels (width × height). Higher resolution provides more detail but increases computation and memory. Most CNN models resize inputs to a fixed size (224×224, 384×384). Too low resolution loses important details (small objects). Too high adds noise and computational cost. The optimal resolution depends on the task — object detection needs higher resolution than classification. Multi-scale approaches process at multiple resolutions."),
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="Any", topic="Segmentation",
+         text="What is the difference between semantic, instance, and panoptic segmentation?",
+         answer="Semantic segmentation labels every pixel with a class (all cars are 'car' — no distinction between individual cars). Instance segmentation distinguishes individual objects (car-1, car-2). Panoptic segmentation combines both: stuff classes (sky, road) get semantic labels, thing classes (cars, people) get instance labels. Models: U-Net for semantic, Mask R-CNN for instance, Panoptic FPN for panoptic."),
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="Infosys", topic="Tasks",
+         text="What is pose estimation in computer vision?",
+         answer="Pose estimation detects the position of body keypoints (joints, landmarks) from images or video. Top-down: detect person first, then estimate keypoints. Bottom-up: detect all keypoints first, then group by person (faster for multiple people). Models: OpenPose, HRNet, MediaPipe. Applications: sports analytics, fitness apps, gesture recognition, AR/VR, and physiotherapy. Outputs are typically 17-25 keypoints with x,y coordinates and confidence scores."),
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="Any", topic="Features",
+         text="What are SIFT, SURF, and ORB feature detectors?",
+         answer="These detect and describe distinctive local features in images. SIFT (Scale-Invariant Feature Transform): robust to scale and rotation, but slow and patented (patent expired). SURF: faster version of SIFT using integral images. ORB (Oriented FAST and Rotated BRIEF): fast, free, good for real-time applications. Used for image matching, stitching, SLAM, and object recognition. Largely replaced by learned features (SuperPoint) in modern applications."),
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="TCS", topic="Video",
+         text="What is optical flow and what is it used for?",
+         answer="Optical flow estimates the motion of pixels between consecutive video frames, producing a vector field showing how each pixel moved. Methods: Lucas-Kanade (sparse, fast), Farneback (dense), FlowNet/RAFT (deep learning). Used for: motion detection, video stabilisation, action recognition, autonomous driving, and video interpolation. It assumes brightness constancy and small motion between frames."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Google", topic="Detection",
+         text="What is the difference between anchor-based and anchor-free object detectors?",
+         answer="Anchor-based detectors (Faster R-CNN, SSD, YOLOv3) predefine a set of reference boxes (anchors) at each location and predict offsets from these anchors. They require careful anchor design. Anchor-free detectors (CenterNet, FCOS, YOLOv8) directly predict object centres and sizes without predefined anchors. Anchor-free methods are simpler, have fewer hyperparameters, and often achieve competitive or better performance. Modern YOLO versions are anchor-free."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Amazon", topic="Architectures",
+         text="What is a Feature Pyramid Network (FPN) and why is it important?",
+         answer="FPN builds a multi-scale feature pyramid from a backbone CNN by combining high-resolution low-level features (edges, textures) with low-resolution high-level features (semantic meaning) through top-down pathway and lateral connections. This enables detecting objects at multiple scales — small objects use high-resolution features, large objects use low-resolution features. FPN is a standard component in modern object detectors (Faster R-CNN, RetinaNet, Mask R-CNN)."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Google", topic="3D Vision",
+         text="What is depth estimation and what are monocular vs stereo approaches?",
+         answer="Depth estimation predicts distance from the camera to each pixel. Stereo depth uses two cameras (like human eyes) and computes disparity between matched pixels — depth is inversely proportional to disparity. Monocular depth estimation uses a single image and deep learning to predict depth from learned cues (size, texture gradients, occlusion). Monocular is more practical (single camera) but less accurate. Models: MiDaS, DPT. Used in AR, robotics, and autonomous driving."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Generation",
+         text="What is image super-resolution and how do modern approaches work?",
+         answer="Super-resolution reconstructs high-resolution images from low-resolution inputs. Classical: interpolation (bicubic). Deep learning: SRCNN (first CNN approach), ESRGAN (GAN-based, produces realistic textures), SwinIR (transformer-based). GAN-based methods produce sharper results but may hallucinate details. Perceptual loss and adversarial loss produce more visually pleasing results than pixel-wise MSE. Applications: satellite imagery, medical imaging, video enhancement, and photo upscaling."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Any", topic="Generation",
+         text="What is neural style transfer and how does it work?",
+         answer="Style transfer applies the artistic style of one image to the content of another. Original approach (Gatys et al.): optimise a generated image to match content features (high-level CNN activations) of one image and style features (Gram matrices of activations) of another. Feed-forward methods (Johnson et al.) train a network for real-time transfer. AdaIN (Adaptive Instance Normalisation) enables arbitrary style transfer. Used in apps like Prisma."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Google", topic="Tasks",
+         text="What is image retrieval and how do modern systems work?",
+         answer="Image retrieval finds similar images in a database given a query image. Modern approach: encode images into compact embeddings using a trained CNN/ViT, store embeddings in a vector database (FAISS, Milvus), and find nearest neighbours at query time. Training uses metric learning (contrastive/triplet loss) or ArcFace. Techniques: global descriptors (GeM pooling), re-ranking, and query expansion. Used in reverse image search, product matching, and duplicate detection."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Amazon", topic="Robustness",
+         text="What are adversarial attacks on vision models and how do you defend against them?",
+         answer="Adversarial attacks add imperceptible perturbations to images that cause misclassification. FGSM (Fast Gradient Sign Method) follows the gradient to maximise loss. PGD is an iterative version. Physical-world attacks use printed patches. Defences: adversarial training (train on adversarial examples), input preprocessing (JPEG compression, denoising), certified defences (randomised smoothing), and ensemble methods. No defence is foolproof — it is an ongoing arms race."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Any", topic="Data",
+         text="What is synthetic data for training vision models and when is it useful?",
+         answer="Synthetic data is generated programmatically (3D rendering, simulation, GANs, diffusion models) rather than collected from the real world. Useful when: real data is scarce, expensive to label, or privacy-sensitive. Examples: synthetic faces for face recognition, rendered objects for detection, simulated driving scenes. Domain gap (difference between synthetic and real data) is the main challenge — addressed by domain randomisation and domain adaptation techniques."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Video",
+         text="What is action recognition in video and what are the common approaches?",
+         answer="Action recognition classifies human activities in video clips. Approaches: 2D CNN + temporal pooling (extract frame features, aggregate), 3D CNNs (C3D, I3D — convolve across space and time), Two-stream networks (separate RGB and optical flow), and Video Transformers (TimeSformer, ViViT — apply attention across space-time tokens). SlowFast networks use two pathways at different frame rates. Challenges: temporal reasoning, computational cost, and dataset bias."),
+
+    dict(subject="CV", difficulty="Medium", type="Coding", company="Google", topic="Image Processing",
+         text="How would you build an image preprocessing pipeline using OpenCV?",
+         answer="1) Read image: cv2.imread(path). 2) Resize: cv2.resize(img, (width, height)). 3) Convert colour: cv2.cvtColor(img, cv2.COLOR_BGR2RGB). 4) Normalise: img = img / 255.0 or ImageNet normalisation. 5) Apply augmentations: cv2.flip(), rotation with cv2.getRotationMatrix2D(). 6) Blur/denoise: cv2.GaussianBlur(). For deep learning, use torchvision.transforms or albumentations for composable, GPU-accelerated augmentation pipelines."),
+
+    dict(subject="CV", difficulty="Medium", type="Coding", company="Amazon", topic="Detection",
+         text="How would you build a simple object detection pipeline using a pretrained model?",
+         answer="Use a pretrained model from torchvision: model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True). Preprocess image: convert to tensor, normalise. Run inference: predictions = model([image_tensor]). Post-process: filter by confidence threshold, apply NMS (non-maximum suppression). Visualise: draw bounding boxes with labels and scores using matplotlib or OpenCV. For custom classes, fine-tune on your dataset using transfer learning."),
+
+    dict(subject="CV", difficulty="Hard", type="Conceptual", company="Google", topic="3D Vision",
+         text="What are point clouds and how are they processed in deep learning?",
+         answer="Point clouds are sets of 3D points (x,y,z coordinates, optionally with colour/intensity) from LiDAR or depth sensors. Unlike images, they are unordered and sparse. PointNet processes each point independently then aggregates with max pooling (invariant to order). PointNet++ adds local structure with hierarchical grouping. Voxel-based methods (VoxelNet) discretise into 3D grids. Used in autonomous driving, robotics, and AR. Challenges: irregular structure, varying density, computational cost."),
+
+    dict(subject="CV", difficulty="Hard", type="Conceptual", company="Meta", topic="Generation",
+         text="What is image inpainting and how do modern deep learning approaches work?",
+         answer="Image inpainting fills in missing or damaged regions of an image. Modern approaches: encoder-decoder networks with partial convolutions (ignore missing pixels), gated convolutions (learn soft masks), and transformer-based models that capture long-range context. GAN-based methods (DeepFill, LaMa) produce realistic textures. Recent diffusion model-based inpainting (Stable Diffusion inpainting) achieves the best quality. Applications: photo editing, object removal, image restoration, and cultural heritage preservation."),
+
+    dict(subject="CV", difficulty="Hard", type="Conceptual", company="Google", topic="Architectures",
+         text="How do deformable convolutions work and what problem do they solve?",
+         answer="Standard convolutions sample input at fixed grid locations. Deformable convolutions learn 2D offsets for each sampling position, allowing the receptive field to adapt to object shape and scale. An additional conv layer predicts offsets from the input features. This enables modelling geometric transformations without explicit data augmentation. Particularly useful for: irregular object shapes, varying scales, and dense prediction tasks. Used in DCN (Deformable Convolutional Networks) and modern detectors."),
+
+    dict(subject="CV", difficulty="Hard", type="Conceptual", company="Any", topic="Calibration",
+         text="What is camera calibration and why is it important in computer vision?",
+         answer="Camera calibration determines intrinsic parameters (focal length, principal point, distortion coefficients) and extrinsic parameters (camera position and orientation in world coordinates). It maps 3D world points to 2D image points. Done using a calibration pattern (checkerboard) and Zhang's method (implemented in cv2.calibrateCamera). Essential for: 3D reconstruction, AR, stereo vision, measurement applications, and undistorting images. Without calibration, geometric measurements from images are inaccurate."),
+
+    dict(subject="CV", difficulty="Hard", type="Situational", company="Google", topic="Deployment",
+         text="You need to deploy a real-time object detection system on an edge device with limited compute. How would you approach this?",
+         answer="Model selection: use efficient architectures (YOLOv8-nano, MobileNet-SSD, EfficientDet-Lite). Optimise: quantise to INT8 (TensorRT, TFLite), prune unimportant channels, use knowledge distillation from a larger model. Framework: deploy with TensorRT on NVIDIA Jetson, TFLite on mobile, or ONNX Runtime. Reduce input resolution to the minimum needed. Benchmark latency and accuracy tradeoffs. Consider hardware-specific optimisations and batching. Monitor inference time, memory, and power consumption in production."),
+
+    dict(subject="CV", difficulty="Hard", type="Situational", company="Amazon", topic="Quality",
+         text="You are building a product image quality detection system for an e-commerce platform. What approach would you take?",
+         answer="Define quality criteria: resolution, blur, lighting, background consistency, watermarks, text overlay. Train a multi-label classifier on manually labelled examples for each defect type. Use a backbone like EfficientNet with multiple classification heads. For blur detection, combine learned features with traditional metrics (Laplacian variance). Create an automated pipeline: ingest → quality check → accept/flag/reject. Set thresholds per category (jewellery needs higher quality than electronics). A/B test the impact on conversion rates."),
+
+    dict(subject="CV", difficulty="Hard", type="Situational", company="Meta", topic="Ethics",
+         text="Your team is asked to build a system that estimates age and gender from photos for targeted advertising. What technical and ethical concerns would you raise?",
+         answer="Technical concerns: accuracy varies across demographics (worse for underrepresented groups), lighting and angle sensitivity, adversarial robustness. Ethical concerns: privacy (processing biometric data requires consent under GDPR), potential for discrimination (age/gender-based targeting can be discriminatory), consent (users may not know their photos are being analysed), bias amplification, and regulatory compliance. Recommend: privacy-preserving approaches, clear user consent, bias audits, opt-out mechanisms, and consulting legal/ethics teams before deployment."),
+
+    dict(subject="CV", difficulty="Hard", type="Situational", company="Google", topic="Scale",
+         text="You need to build an image similarity search system that handles 100 million images with sub-second query time. How would you design it?",
+         answer="Extract embeddings using a trained vision model (ViT or EfficientNet with metric learning). Store embeddings in an approximate nearest-neighbour index: FAISS with IVF (Inverted File) + PQ (Product Quantisation) for memory efficiency, or ScaNN. Shard the index across multiple machines for 100M scale. Use a two-stage approach: fast ANN retrieval (top-1000), then precise re-ranking with a more expensive model. Cache popular queries. Index supports incremental updates. Monitor recall@K and query latency."),
+
+])
+
+# ══════════════════════════════════════════════════════════════
+# BATCH 3 — Extra Conceptual Questions (deepening coverage)
+# ══════════════════════════════════════════════════════════════
+
+QUESTIONS.extend([
+
+    # ── ML Conceptual ──────────────────────────────────────────
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="Any", topic="Evaluation",
+         text="What is the F1 score and when is it more useful than accuracy?",
+         answer="F1 score is the harmonic mean of precision and recall: 2*(P*R)/(P+R). It is more useful than accuracy when classes are imbalanced. For example, in a dataset with 95% negatives, a model predicting all negative gets 95% accuracy but 0% F1 for the positive class. F1 penalises models that sacrifice either precision or recall."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="Wipro", topic="Fundamentals",
+         text="What is the curse of dimensionality?",
+         answer="As the number of features grows, the volume of the feature space increases exponentially, making data sparse. Distances between points become nearly equal, hurting distance-based algorithms like KNN. More features also increase overfitting risk and training time. Solutions: feature selection, PCA, autoencoders, or domain-driven feature engineering to reduce dimensions."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Google", topic="Algorithms",
+         text="How does a Random Forest make predictions and why is it better than a single Decision Tree?",
+         answer="Random Forest builds many decision trees on random bootstrap samples and random feature subsets, then aggregates their predictions (majority vote for classification, average for regression). It is better than a single tree because averaging reduces variance and overfitting while maintaining low bias. The randomness decorrelates the trees, making the ensemble more robust. Feature importance can be derived from mean decrease in impurity across trees."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Amazon", topic="Evaluation",
+         text="What is stratified sampling and why is it important in train-test splits?",
+         answer="Stratified sampling ensures each split has the same class proportions as the full dataset. Without it, a random split could put most of a minority class into one set, giving misleading evaluation results. It is especially critical for imbalanced datasets. In sklearn, use train_test_split with stratify=y or StratifiedKFold for cross-validation."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Infosys", topic="Algorithms",
+         text="What is the difference between hard and soft voting in ensemble methods?",
+         answer="Hard voting takes the majority class predicted by individual models. Soft voting averages the predicted probabilities and picks the class with the highest average probability. Soft voting is usually better because it accounts for prediction confidence — a model 90% sure should carry more weight than one that is 51% sure. Soft voting requires models that output calibrated probabilities."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Google", topic="Preprocessing",
+         text="What is target encoding and when would you use it instead of one-hot encoding?",
+         answer="Target encoding replaces each category with the mean of the target variable for that category. Use it for high-cardinality categorical features (like zip code or user ID) where one-hot encoding creates too many columns. Risk: it can leak target information and cause overfitting. Mitigate with smoothing (blend category mean with global mean) and cross-validation-based encoding."),
+
+    dict(subject="ML", difficulty="Hard", type="Conceptual", company="Google", topic="Theory",
+         text="What is the VC dimension and why does it matter in learning theory?",
+         answer="VC (Vapnik-Chervonenkis) dimension measures the capacity of a model — the largest set of points it can shatter (classify in all possible ways). A linear classifier in 2D has VC dimension 3. Higher VC dimension means the model can fit more complex patterns but also overfits more easily. It provides theoretical bounds on generalisation error: more training data is needed for higher VC dimension models."),
+
+    dict(subject="ML", difficulty="Hard", type="Conceptual", company="Amazon", topic="Algorithms",
+         text="Explain how Gradient Boosted Trees (GBT) work step by step.",
+         answer="GBT builds trees sequentially. Step 1: start with a simple prediction (e.g., mean). Step 2: compute residuals (errors). Step 3: fit a new shallow tree to predict the residuals. Step 4: add this tree's predictions (scaled by learning rate) to the running prediction. Step 5: repeat with new residuals. Each tree corrects previous errors. Regularisation via learning rate, max depth, subsampling, and L1/L2 penalties prevents overfitting. XGBoost adds second-order gradients for efficiency."),
+
+    dict(subject="ML", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Fundamentals",
+         text="What is the difference between online learning and batch learning?",
+         answer="Batch learning trains on the entire dataset at once — the model is retrained from scratch when new data arrives. Online learning updates the model incrementally with each new data point or mini-batch. Online learning is useful for streaming data, very large datasets that do not fit in memory, and environments where the data distribution shifts over time. SGD naturally supports online learning."),
+
+    dict(subject="ML", difficulty="Easy", type="Conceptual", company="TCS", topic="Evaluation",
+         text="What is a learning curve and what does it tell you?",
+         answer="A learning curve plots training and validation performance against the number of training samples. If both scores are low, the model underfits (high bias) — try a more complex model. If training score is high but validation is low, the model overfits (high variance) — get more data or regularise. If both converge to a high score, the model is well-fitted. It helps decide whether to collect more data or change the model."),
+
+    # ── DL Conceptual ──────────────────────────────────────────
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="Any", topic="Architectures",
+         text="What is a Recurrent Neural Network (RNN) and what problem does it solve?",
+         answer="RNNs process sequential data by maintaining a hidden state that carries information from previous time steps. At each step, the hidden state is updated based on the current input and previous hidden state. They solve problems where order matters: text, speech, time series. Vanilla RNNs suffer from vanishing gradients for long sequences, which is why LSTMs and GRUs were developed."),
+
+    dict(subject="DL", difficulty="Easy", type="Conceptual", company="TCS", topic="Training",
+         text="What is the difference between online, batch, and mini-batch gradient descent?",
+         answer="Batch GD computes gradients on the entire dataset — stable but slow for large data. Online (stochastic) GD uses one sample at a time — fast and noisy, can escape local minima. Mini-batch GD uses small batches (32-256 samples) — balances speed and stability, enables GPU parallelism. Mini-batch is the standard in deep learning. Batch size affects generalisation: smaller batches often generalise better."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Google", topic="Architectures",
+         text="What is a U-Net and why is it popular for image segmentation?",
+         answer="U-Net has an encoder (downsampling) path and a decoder (upsampling) path connected by skip connections that pass high-resolution features directly to the decoder. This preserves spatial details crucial for pixel-level predictions. It works well with small datasets (originally designed for medical imaging with ~30 images). Variants include U-Net++, Attention U-Net, and nnU-Net which auto-configures for different tasks."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Amazon", topic="Training",
+         text="What is label smoothing and why does it help?",
+         answer="Instead of using hard labels (0 or 1), label smoothing uses soft targets like 0.1 and 0.9. This prevents the model from becoming overconfident and improves calibration. The model learns that no prediction should be 100% certain. It acts as a regulariser, reducing overfitting. Common in image classification and machine translation. Typically use a smoothing factor of 0.1."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Fundamentals",
+         text="What is the difference between weight decay and L2 regularisation?",
+         answer="For standard SGD, weight decay and L2 regularisation are mathematically equivalent — both shrink weights towards zero. However, for adaptive optimisers like Adam, they differ. L2 regularisation adds the penalty to the loss, which gets scaled by the adaptive learning rate. Weight decay (AdamW) directly shrinks weights regardless of the adaptive rate, providing more consistent regularisation. AdamW is preferred over Adam with L2 for this reason."),
+
+    dict(subject="DL", difficulty="Medium", type="Conceptual", company="Any", topic="Architectures",
+         text="What is the difference between 1x1, 3x3 and dilated convolutions?",
+         answer="1x1 convolutions change the number of channels without altering spatial dimensions — used for channel mixing and dimensionality reduction (Network-in-Network, Inception). 3x3 is the standard spatial convolution capturing local patterns. Dilated (atrous) convolutions insert gaps between kernel elements, expanding the receptive field without increasing parameters — used in semantic segmentation (DeepLab) and WaveNet for audio."),
+
+    dict(subject="DL", difficulty="Hard", type="Conceptual", company="Google", topic="Architectures",
+         text="What is Flash Attention and why is it important for transformers?",
+         answer="Standard self-attention is O(n²) in both time and memory for sequence length n. Flash Attention is an IO-aware algorithm that computes exact attention by tiling the computation to fit in fast GPU SRAM, avoiding reading/writing the full n×n attention matrix to slow GPU HBM. It reduces memory from O(n²) to O(n) and is 2-4x faster. It enables training with much longer sequences. Flash Attention 2 further optimises parallelism."),
+
+    dict(subject="DL", difficulty="Hard", type="Conceptual", company="Meta", topic="Fine-Tuning",
+         text="What is the difference between full fine-tuning, LoRA, prefix tuning and prompt tuning?",
+         answer="Full fine-tuning updates all model parameters — best accuracy but high cost. LoRA adds trainable low-rank matrices to attention layers (~0.1-1% params). Prefix tuning prepends learnable virtual tokens to each layer's hidden states. Prompt tuning only prepends learnable tokens to the input embedding. Trade-off: full > LoRA > prefix > prompt tuning in accuracy but reverse in efficiency. LoRA is the most popular balance of quality and cost."),
+
+    # ── DSA Conceptual ─────────────────────────────────────────
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="Any", topic="Fundamentals",
+         text="What is amortised time complexity? Give an example.",
+         answer="Amortised analysis averages the cost of an operation over a sequence of operations, even if individual operations are expensive. Example: ArrayList/dynamic array appending is O(1) amortised. Most appends are O(1), but occasionally the array doubles in size (O(n) copy). Over n appends, total work is O(n), so each append is O(1) amortised. It is different from average case — amortised guarantees hold for any sequence."),
+
+    dict(subject="DSA", difficulty="Easy", type="Conceptual", company="TCS", topic="Hashing",
+         text="What are the common collision resolution strategies in hash tables?",
+         answer="Chaining: each bucket stores a linked list of colliding entries — simple, handles high load. Open addressing: on collision, probe for the next empty slot. Linear probing: check next slot (causes clustering). Quadratic probing: check i² slots ahead (reduces clustering). Double hashing: use a second hash function for step size (best distribution). Python dicts use open addressing with perturbation."),
+
+    dict(subject="DSA", difficulty="Medium", type="Conceptual", company="Google", topic="Graphs",
+         text="What is the difference between a tree, a forest, and a graph?",
+         answer="A graph is a set of vertices and edges (can have cycles, be directed/undirected). A tree is a connected acyclic undirected graph — n vertices, n-1 edges, exactly one path between any two vertices. A forest is a collection of disjoint trees (acyclic but not necessarily connected). Every tree is a graph, but not every graph is a tree. Binary trees, BSTs, and heaps are special cases of trees."),
+
+    dict(subject="DSA", difficulty="Medium", type="Conceptual", company="Amazon", topic="Complexity",
+         text="What is the Master Theorem and how is it used?",
+         answer="The Master Theorem solves recurrences of the form T(n) = aT(n/b) + O(n^d), common in divide-and-conquer algorithms. Three cases: if d < log_b(a), T(n) = O(n^log_b(a)). If d = log_b(a), T(n) = O(n^d log n). If d > log_b(a), T(n) = O(n^d). Example: merge sort T(n) = 2T(n/2) + O(n) → a=2, b=2, d=1, case 2 → O(n log n). It provides quick complexity analysis without solving the full recurrence."),
+
+    dict(subject="DSA", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Strings",
+         text="What is the Rabin-Karp algorithm and when would you use it?",
+         answer="Rabin-Karp uses rolling hash to find pattern matches in text. Compute hash of the pattern and slide a window across the text, updating the hash in O(1) using rolling hash. On hash match, verify with character comparison to handle collisions. Average O(n+m), worst O(nm). Best for multi-pattern search (search for many patterns simultaneously) — each pattern's hash is checked in O(1) against the window hash."),
+
+    dict(subject="DSA", difficulty="Hard", type="Conceptual", company="Google", topic="Advanced",
+         text="What is a Bloom filter and where is it used?",
+         answer="A Bloom filter is a space-efficient probabilistic data structure that tests set membership. It uses k hash functions mapping elements to k positions in a bit array. Query: if all k bits are set, the element is 'probably in the set' (false positives possible). If any bit is 0, the element is 'definitely not in the set' (no false negatives). Used in: database query optimisation, cache lookups, spell checkers, and network routers. Cannot delete elements (use Counting Bloom filter for that)."),
+
+    # ── Python Conceptual ──────────────────────────────────────
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="Any", topic="Fundamentals",
+         text="What is the difference between a module, a package, and a library in Python?",
+         answer="A module is a single .py file containing functions, classes and variables. A package is a directory of modules with an __init__.py file, enabling hierarchical organisation. A library is a collection of packages distributed together (e.g., NumPy, pandas). You import modules with 'import', packages with 'from package import module'. The terms are sometimes used loosely — 'library' and 'package' are often interchangeable in casual usage."),
+
+    dict(subject="Python", difficulty="Easy", type="Conceptual", company="TCS", topic="Fundamentals",
+         text="What does 'if __name__ == \"__main__\"' do in Python?",
+         answer="It checks whether the script is being run directly (not imported). When a script runs directly, __name__ is set to '__main__'. When imported as a module, __name__ is the module's name. This idiom lets you write code that executes only when the file is run directly — useful for putting test code, CLI entry points, or examples that should not run on import."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Google", topic="Advanced",
+         text="What is the difference between @staticmethod and @classmethod in practice?",
+         answer="@staticmethod takes no implicit first argument — it is essentially a regular function namespaced under the class. @classmethod receives the class itself as the first argument (cls), enabling it to access class-level attributes and create instances of subclasses. Use @classmethod for factory methods (alternative constructors like dict.fromkeys()). Use @staticmethod for utility functions logically grouped with the class but not needing class or instance state."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Amazon", topic="Modules",
+         text="What is the difference between NumPy and Pandas, and when do you use each?",
+         answer="NumPy provides fast n-dimensional arrays and vectorised mathematical operations — use for numerical computation, linear algebra, and when you need raw performance on homogeneous data. Pandas provides DataFrames with labelled rows/columns, handling mixed types, missing data, groupby, merging, and time series — use for data manipulation, cleaning, and analysis. Pandas is built on NumPy. For pure computation, NumPy is faster; for data wrangling, Pandas is more convenient."),
+
+    dict(subject="Python", difficulty="Medium", type="Conceptual", company="Microsoft", topic="Advanced",
+         text="How does Python's dictionary work internally?",
+         answer="Python dicts use a hash table with open addressing. When inserting a key, Python computes its hash, finds a slot in the internal array, and stores the key-value pair. Collisions are resolved by probing. Since Python 3.7, dicts maintain insertion order by using a compact array of indices into a separate entries array. Average O(1) for get/set/delete. The table resizes (doubles) when 2/3 full. Keys must be hashable (immutable)."),
+
+    dict(subject="Python", difficulty="Hard", type="Conceptual", company="Google", topic="Advanced",
+         text="What is the Method Resolution Order (MRO) in Python and how does it handle multiple inheritance?",
+         answer="MRO determines the order in which base classes are searched when calling a method. Python uses the C3 linearisation algorithm which ensures: a class is checked before its parents, and the order of parents is preserved. Access it via ClassName.__mro__ or ClassName.mro(). super() follows the MRO, not just the immediate parent. This prevents the diamond problem where a method could be ambiguous with multiple inheritance paths."),
+
+    # ── Stats Conceptual ───────────────────────────────────────
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="Any", topic="Probability",
+         text="What is the difference between independent and mutually exclusive events?",
+         answer="Independent events: the occurrence of one does not affect the other. P(A and B) = P(A) * P(B). Example: two coin flips. Mutually exclusive events: they cannot occur simultaneously. P(A and B) = 0. Example: rolling a 3 and a 5 on one die. Mutually exclusive events are never independent (unless one has probability 0), because if one occurs, the other definitely does not."),
+
+    dict(subject="Stats", difficulty="Easy", type="Conceptual", company="Infosys", topic="Fundamentals",
+         text="What is variance and how does it relate to standard deviation?",
+         answer="Variance measures the average squared deviation from the mean: Var(X) = E[(X-mu)²]. Standard deviation is the square root of variance, bringing the measure back to the original units. If heights vary with variance 25 cm², the standard deviation is 5 cm — much more interpretable. Variance is easier to work with mathematically (additive for independent variables), but standard deviation is more intuitive for communication."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Google", topic="Testing",
+         text="What is a t-test and what are its different types?",
+         answer="A t-test compares means when the population standard deviation is unknown and sample size is small. One-sample t-test: is the sample mean different from a known value? Independent two-sample t-test: are two group means different? Paired t-test: are means different for the same subjects measured twice? Assumptions: normality (relaxed for large n by CLT), independence, equal variances (use Welch's t-test if not). Reports t-statistic and p-value."),
+
+    dict(subject="Stats", difficulty="Medium", type="Conceptual", company="Amazon", topic="Regression",
+         text="What is the difference between correlation and regression?",
+         answer="Correlation measures the strength and direction of a linear relationship between two variables (-1 to +1). It is symmetric — correlation of X with Y equals Y with X. Regression models the relationship to predict one variable from another. It is asymmetric — predicting Y from X is different from predicting X from Y. Correlation does not imply a predictive model; regression provides one. Both assume linearity in their basic forms."),
+
+    dict(subject="Stats", difficulty="Hard", type="Conceptual", company="Google", topic="Inference",
+         text="What is the difference between frequentist and Bayesian confidence/credible intervals?",
+         answer="Frequentist confidence interval: if you repeated the experiment many times, 95% of the computed intervals would contain the true parameter. It says nothing about the probability of the parameter being in this specific interval. Bayesian credible interval: there is a 95% probability that the parameter lies in this interval, given the data and prior. Bayesian intervals directly answer what we usually want to know but require specifying a prior distribution."),
+
+    # ── NLP Conceptual ─────────────────────────────────────────
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="Any", topic="Fundamentals",
+         text="What are stop words and should you always remove them?",
+         answer="Stop words are common words (the, is, at, a) that appear frequently but carry little semantic meaning on their own. Removing them reduces noise and dimensionality for bag-of-words and TF-IDF models. However, do NOT remove them for: transformer models (BERT needs them for context), sentiment analysis ('not good' loses meaning without 'not'), and language models. The trend in modern NLP is minimal preprocessing."),
+
+    dict(subject="NLP", difficulty="Easy", type="Conceptual", company="TCS", topic="Tasks",
+         text="What is the difference between NER and POS tagging?",
+         answer="POS (Part-of-Speech) tagging labels each word with its grammatical role: noun, verb, adjective, etc. NER (Named Entity Recognition) identifies and classifies named entities: person names, organisations, locations, dates, etc. POS tagging is about grammar; NER is about real-world entities. POS tagging is often a preprocessing step that helps NER. Both can be done with sequence labelling models (BiLSTM-CRF, BERT)."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Google", topic="Embeddings",
+         text="How does Word2Vec learn word embeddings?",
+         answer="Word2Vec learns embeddings by training a shallow neural network on word co-occurrence. Two architectures: CBOW (predicts a word from its context) and Skip-gram (predicts context from a word). Skip-gram with negative sampling is most common. The trained weight matrix becomes the embedding. Words in similar contexts get similar vectors, capturing semantic relationships like king - man + woman ≈ queen. Training is efficient with negative sampling."),
+
+    dict(subject="NLP", difficulty="Medium", type="Conceptual", company="Amazon", topic="Tasks",
+         text="What is dependency parsing and how does it differ from constituency parsing?",
+         answer="Constituency parsing breaks a sentence into nested phrases (NP, VP, PP) forming a tree — shows phrase structure. Dependency parsing connects words with directed edges showing grammatical relationships (subject, object, modifier) — shows who does what to whom. Dependency parsing is more popular in modern NLP because it directly captures semantic relationships and works better across languages. SpaCy uses dependency parsing by default."),
+
+    dict(subject="NLP", difficulty="Hard", type="Conceptual", company="Meta", topic="LLMs",
+         text="What is the difference between autoregressive and masked language modelling?",
+         answer="Autoregressive LM (GPT): predicts the next token given all previous tokens, left-to-right. Cannot see future context. Natural for text generation. Masked LM (BERT): masks random tokens and predicts them using both left and right context. Better for understanding tasks but not naturally generative. T5 bridges both: encoder uses bidirectional context, decoder is autoregressive. The choice determines what tasks the model excels at."),
+
+    # ── CV Conceptual ──────────────────────────────────────────
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="Any", topic="Fundamentals",
+         text="What is a convolution operation in image processing?",
+         answer="Convolution slides a small filter (kernel) over an image, computing the element-wise product and sum at each position. Different kernels detect different features: edge detection (Sobel), blurring (Gaussian), sharpening. In CNNs, the kernel values are learned during training. A 3x3 kernel on a 5x5 image produces a 3x3 output (without padding). Padding and stride control the output size."),
+
+    dict(subject="CV", difficulty="Easy", type="Conceptual", company="Wipro", topic="Fundamentals",
+         text="What is the difference between stride and padding in CNNs?",
+         answer="Stride is the step size when sliding the filter — stride 1 moves one pixel at a time, stride 2 skips every other position (halving spatial dimensions). Padding adds extra pixels (usually zeros) around the input border. 'Same' padding keeps output size equal to input. 'Valid' padding uses no padding (output shrinks). Stride reduces spatial dimensions for efficiency; padding preserves spatial information at the edges."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Google", topic="Architectures",
+         text="How does the Inception (GoogLeNet) module work?",
+         answer="Inception modules apply multiple filter sizes (1x1, 3x3, 5x5) and max pooling in parallel on the same input, then concatenate the outputs. This captures features at multiple scales simultaneously. 1x1 convolutions are used before larger filters to reduce channel dimensions (bottleneck), keeping computation manageable. This architecture won ImageNet 2014 and inspired multi-scale feature extraction in modern networks."),
+
+    dict(subject="CV", difficulty="Medium", type="Conceptual", company="Amazon", topic="Detection",
+         text="How does Faster R-CNN work for object detection?",
+         answer="Faster R-CNN has three components: 1) A backbone CNN extracts feature maps from the image. 2) A Region Proposal Network (RPN) generates candidate bounding boxes (anchors) with objectness scores. 3) An ROI (Region of Interest) pooling layer extracts fixed-size features for each proposal, which are classified and refined by fully connected layers. It is a two-stage detector — slower but more accurate than single-stage detectors like YOLO for small objects."),
+
+    dict(subject="CV", difficulty="Hard", type="Conceptual", company="Google", topic="Architectures",
+         text="How do Vision Transformers (ViT) process images differently from CNNs?",
+         answer="ViT splits an image into fixed-size patches (e.g., 16x16), linearly embeds each patch, adds positional embeddings, and processes the sequence with a standard transformer encoder. Unlike CNNs, ViT has no inductive bias for locality or translation invariance — it learns these from data. ViT needs large datasets to outperform CNNs but scales better with data and compute. Hybrid models (CNN backbone + transformer) combine the strengths of both."),
+
+])
+
 def seed():
     db = SessionLocal()
     try:
@@ -710,7 +1796,7 @@ def seed():
             db.add(Question(**q))
 
         db.commit()
-        print(f"✅ Seeded {len(QUESTIONS)} questions successfully.")
+        print(f"✅ Seeded {len(QUESTIONS)} questions successfully (400+ question bank).")
 
         # Print summary
         from sqlalchemy import func

@@ -13,7 +13,7 @@ prepwise/
     ├── main.py            ← App entry point
     ├── config.py          ← Settings from .env
     ├── database.py        ← SQLAlchemy + PostgreSQL
-    ├── seed.py            ← Seed 27 DSAI questions into DB
+    ├── seed.py            ← Seed 480+ DSAI questions into DB
     ├── requirements.txt   ← All Python dependencies
     ├── .env.example       ← Copy to .env and fill values
     ├── models/
