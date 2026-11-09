@@ -1,104 +1,52 @@
-# ⚡ PrepWise — DS & AI Interview Prep Platform
+# PrepWise — DS & AI Interview Preparation
 
-A full-stack interview preparation platform built for Data Science & AI B.Tech students.
+PrepWise is a full-stack interview-preparation app for Data Science and AI students. It includes a 500+ question bank, Aria voice interview practice, a resume checker, authentication, and per-user performance tracking.
 
-## 🗂️ Project Structure
+## Run locally on Windows
+
+1. Install Python 3.11 or later from [python.org](https://www.python.org/downloads/). During installation, enable **Add Python to PATH**.
+2. Double-click `start_prepwise.bat` in this project folder.
+3. The first launch creates a local Python environment and installs dependencies. It then opens the app at `http://127.0.0.1:8765`.
+4. Keep the command window open while using PrepWise.
+
+No Docker is required. The backend uses the included SQLite database (`backend/prepwise.db`) and automatically seeds missing questions at startup.
+
+> Use `start_prepwise.bat` instead of opening `PrepWise.html` directly. It starts the API required for the question bank and then opens the correct local URL.
+
+## Project structure
 
 ```
-prepwise/
-├── PrepWise.html          ← Phase 1 & 3: Complete frontend (open directly in browser)
-├── docker-compose.yml     ← Phase 2: PostgreSQL + Redis setup
+PrepWise-GitHub-Ready/
+├── PrepWise.html          # Frontend UI
+├── index.html             # Deployment redirect
+├── start_prepwise.bat     # One-click Windows launcher
 ├── README.md
-└── backend/               ← Phase 2 & 3: FastAPI backend
-    ├── main.py            ← App entry point
-    ├── config.py          ← Settings from .env
-    ├── database.py        ← SQLAlchemy + PostgreSQL
-    ├── seed.py            ← Seed 480+ DSAI questions into DB
-    ├── requirements.txt   ← All Python dependencies
-    ├── .env.example       ← Copy to .env and fill values
-    ├── models/
-    │   ├── user.py        ← User table
-    │   ├── question.py    ← Questions + UserQuestion tables
-    │   └── interview.py   ← InterviewSession + ATSResult tables
-    ├── routers/
-    │   ├── auth.py        ← /auth/register, /auth/login, /auth/me
-    │   ├── questions.py   ← /questions (filtered), /questions/{id}/done
-    │   └── ats.py         ← /ats/check (PDF upload + scoring)
-    └── services/
-        ├── auth.py        ← JWT + bcrypt helpers
-        └── redis_client.py← Redis connection
+└── backend/
+    ├── main.py            # FastAPI application
+    ├── seed.py            # 500+ interview questions
+    ├── prepwise.db        # Local SQLite database
+    ├── routers/           # Auth, questions, ATS, dashboard APIs
+    └── requirements.txt
 ```
 
-## 🚀 Quick Start
+## GitHub upload
 
-### 1. Open the Frontend
-Just double-click `PrepWise.html` or open with Live Server in VS Code.
+Create an empty repository on GitHub, then in this folder run:
 
-### 2. Start the Backend
-
-**Step 1 — Copy environment file**
-```bash
-cd backend
-cp .env.example .env
-# Edit .env with your values
+```powershell
+git init
+git add .
+git commit -m "Add PrepWise interview-prep application"
+git branch -M main
+git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+git push -u origin main
 ```
 
-**Step 2 — Start PostgreSQL + Redis**
-```bash
-docker-compose up -d
-```
+The private `.env` file and generated Python virtual environment are intentionally not included. Copy `backend/.env.example` to `backend/.env` only if you need to customize settings.
 
-**Step 3 — Install Python dependencies**
-```bash
-pip install -r requirements.txt
-python -m spacy download en_core_web_sm
-```
+## Main features
 
-**Step 4 — Seed the database**
-```bash
-python seed.py
-```
-
-**Step 5 — Start the API**
-```bash
-uvicorn main:app --reload --port 8000
-```
-
-API runs at → http://localhost:8000
-Swagger docs → http://localhost:8000/docs
-
-## ✅ Phases Completed
-
-| Phase | Status | What was built |
-|-------|--------|---------------|
-| Phase 1 | ✅ Done | Full frontend — Landing, Dashboard, Question Bank, ATS, AI Voice Interview |
-| Phase 2 | ✅ Done | FastAPI backend — DB models, Docker, folder structure |
-| Phase 3 | ✅ Done | Auth — JWT login, signup, logout, route protection |
-| Phase 4 | 🔜 Next | Wire question bank to PostgreSQL via fetch() |
-| Phase 5 | 🔜 Next | Real ATS scoring with spaCy + PyMuPDF |
-| Phase 6 | 🔜 Next | Deploy to Vercel + Railway |
-
-## 🛠️ Tech Stack
-
-- **Frontend** — HTML, CSS, JavaScript (vanilla), Web Speech API
-- **Backend** — FastAPI, Python 3.11+
-- **Database** — PostgreSQL + SQLAlchemy + Alembic
-- **Cache** — Redis
-- **Auth** — JWT (python-jose) + bcrypt (passlib)
-- **NLP** — spaCy, PyMuPDF
-- **DevOps** — Docker, docker-compose
-
-## 📬 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /auth/register | Create account |
-| POST | /auth/login | Login, get JWT |
-| POST | /auth/refresh | Refresh access token |
-| GET  | /auth/me | Get current user |
-| GET  | /questions | Get filtered questions |
-| POST | /questions/{id}/done | Mark question done |
-| POST | /ats/check | Upload PDF, get ATS score |
-| GET  | /ats/history | Past ATS results |
-| GET  | /health | Health check |
-
+- 500+ conceptual, coding, situational, and HR questions across ML, DL, DSA, Python, Statistics, NLP, and Computer Vision.
+- Aria voice interviews with shuffled questions, answer feedback, and an interview report.
+- Resume analysis with transparent, skills-focused guidance.
+- User-specific question progress and interview dashboard.

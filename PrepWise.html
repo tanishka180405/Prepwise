@@ -265,13 +265,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   <div class="hero">
     <div class="hero-badge">&#129504; Exclusively for Data Science &amp; AI &mdash; B.Tech</div>
     <h1>Your personal <span>AI interviewer</span> for DS &amp; AI roles</h1>
-    <p class="hero-sub">Voice-to-voice mock interviews, ATS resume checker, and 480+ DSAI and HR interview questions across ML, DL, DSA, NLP &amp; more.</p>
+    <p class="hero-sub">Voice-to-voice mock interviews, ATS resume checker, and 500+ DSAI and HR interview questions across ML, DL, DSA, NLP &amp; more.</p>
     <div class="hero-btns">
       <button class="btn-primary" onclick="showPage('interview')">&#127897;&#65039; Start AI Interview &rarr;</button>
       <button class="btn-outline" onclick="showPage('questions')">Browse Questions</button>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">480+</div><div class="stat-label">DSAI + HR questions</div></div>
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">DSAI + HR questions</div></div>
       <div class="stat"><div class="stat-num">7</div><div class="stat-label">Core subjects</div></div>
       <div class="stat"><div class="stat-num">Voice</div><div class="stat-label">AI speaks to you</div></div>
       <div class="stat"><div class="stat-num">ATS</div><div class="stat-label">Resume checker</div></div>
@@ -386,19 +386,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
         <button class="btn-primary" onclick="showPage('interview')">Start AI Interview &rarr;</button>
       </div>
       <div class="stats-row">
-        <div class="stat-card"><div class="label">Questions Done</div><div class="value" style="color:var(--accent)">47</div><div class="change">&#8593; 12 this week</div><div class="progress-bar"><div class="progress-fill" style="width:38%"></div></div></div>
-        <div class="stat-card"><div class="label">ATS Score</div><div class="value" style="color:var(--accent2)">72<span style="font-size:1rem;color:var(--text3)">/100</span></div><div class="change">&#8593; 8 pts from last upload</div><div class="progress-bar"><div class="progress-fill" style="width:72%;background:linear-gradient(90deg,var(--accent2),#4ADE80)"></div></div></div>
-        <div class="stat-card"><div class="label">Interview Sessions</div><div class="value" style="color:var(--amber)">3</div><div class="change">Last score: 71/100</div><div class="progress-bar"><div class="progress-fill" style="width:60%;background:linear-gradient(90deg,var(--amber),#F97316)"></div></div></div>
-        <div class="stat-card"><div class="label">Streak</div><div class="value" style="color:var(--accent3)">5 &#128293;</div><div class="change">days in a row</div><div class="progress-bar"><div class="progress-fill" style="width:71%;background:linear-gradient(90deg,var(--accent3),var(--amber))"></div></div></div>
+        <div class="stat-card"><div class="label">Questions Done</div><div class="value" id="dash-questions" style="color:var(--accent)">0</div><div class="change" id="dash-questions-note">Start practising</div><div class="progress-bar"><div class="progress-fill" id="dash-questions-bar" style="width:0%"></div></div></div>
+        <div class="stat-card"><div class="label">Interview Score</div><div class="value" id="dash-score" style="color:var(--accent2)">--<span style="font-size:1rem;color:var(--text3)">/100</span></div><div class="change" id="dash-score-note">No interview yet</div><div class="progress-bar"><div class="progress-fill" id="dash-score-bar" style="width:0%;background:linear-gradient(90deg,var(--accent2),#4ADE80)"></div></div></div>
+        <div class="stat-card"><div class="label">Interview Sessions</div><div class="value" id="dash-sessions" style="color:var(--amber)">0</div><div class="change" id="dash-sessions-note">Complete a voice interview</div><div class="progress-bar"><div class="progress-fill" id="dash-sessions-bar" style="width:0%;background:linear-gradient(90deg,var(--amber),#F97316)"></div></div></div>
+        <div class="stat-card"><div class="label">Streak</div><div class="value" id="dash-streak" style="color:var(--accent3)">0 &#128293;</div><div class="change">active days in a row</div><div class="progress-bar"><div class="progress-fill" id="dash-streak-bar" style="width:0%;background:linear-gradient(90deg,var(--accent3),var(--amber))"></div></div></div>
       </div>
       <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem"><span style="font-family:var(--font-display);font-weight:600">Recent activity</span><button class="btn-sm btn-sm-outline" onclick="showPage('questions')">View all</button></div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <div class="report-row"><span class="label">Completed: ML &mdash; Bias vs Variance questions</span><span class="chip chip-purple">ML</span></div>
-          <div class="report-row"><span class="label">ATS score updated after resume upload</span><span class="chip chip-teal">ATS: 72/100</span></div>
-          <div class="report-row"><span class="label">AI Voice Interview &mdash; Deep Learning round</span><span class="chip chip-red">Score: 71/100</span></div>
-          <div class="report-row" style="border:none"><span class="label">Bookmarked: DSA &mdash; Trees &amp; Graphs (4 questions)</span><span class="chip chip-purple">DSA</span></div>
-        </div>
+        <div id="dashboard-activity" style="display:flex;flex-direction:column;gap:10px"><div class="report-row" style="border:none"><span class="label">No activity yet. Complete a question or interview to start your progress history.</span></div></div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
         <button class="feature-card" style="text-align:left;border:none;font-family:var(--font-body);width:100%" onclick="showPage('questions')"><div style="font-size:1.4rem;margin-bottom:6px">&#128218;</div><div style="font-weight:500;font-size:.9rem;color:var(--text)">Continue Practice</div><div style="font-size:.78rem;color:var(--text3);margin-top:4px">ML &mdash; Overfitting &amp; Regularization</div></button>
@@ -518,16 +513,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
         </div>
       </div>
 
-      <!-- Missing keywords -->
-      <div class="keywords-missing">
-        <h4>&#9888;&#65039; Potential skill gaps &mdash; add only if truthful</h4>
-        <div class="kw-list" id="missing-kw-list"></div>
-      </div>
-
-      <!-- Found keywords -->
-      <div class="keywords-missing" style="border-color:rgba(74,222,128,0.15)">
-        <h4 style="color:var(--green)">&#10003; Found keywords</h4>
-        <div class="kw-list" id="found-kw-list"></div>
+      <!-- Skills coverage -->
+      <div class="keywords-missing" style="border-color:rgba(78,205,196,0.2)">
+        <h4 style="color:var(--accent2)">&#128202; Skills coverage</h4>
+        <div id="skills-coverage" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+        <div id="missing-kw-list" style="display:none"></div>
+        <div id="found-kw-list" style="display:none"></div>
       </div>
 
       <!-- Suggestions -->
@@ -558,6 +549,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
           <div class="subject-btn" onclick="selectSubject(this,'Python')"><div class="s-icon">&#128013;</div><div class="s-name">Python</div><div class="s-count">35 questions</div></div>
           <div class="subject-btn" onclick="selectSubject(this,'Stats')"><div class="s-icon">&#128202;</div><div class="s-name">Statistics</div><div class="s-count">35 questions</div></div>
           <div class="subject-btn" onclick="selectSubject(this,'NLP')"><div class="s-icon">&#128172;</div><div class="s-name">NLP</div><div class="s-count">36 questions</div></div>
+          <div class="subject-btn" onclick="selectSubject(this,'CV')"><div class="s-icon">&#128247;</div><div class="s-name">Computer Vision</div><div class="s-count">69 questions</div></div>
+          <div class="subject-btn" onclick="selectSubject(this,'HR')"><div class="s-icon">&#129309;</div><div class="s-name">HR Interview</div><div class="s-count">20 questions</div></div>
           <div class="subject-btn" onclick="selectSubject(this,'Mixed')"><div class="s-icon">&#127919;</div><div class="s-name">Mixed Round</div><div class="s-count">All subjects</div></div>
         </div>
         <div class="form-row">
@@ -811,7 +804,25 @@ async function markDone(e, id){
 }
 
 function filterQ(el, key, val){
-  activeFilters[key] = val;
+  // Choosing a new subject starts a clean subject practice session. This
+  // prevents a previous search or an incompatible type (for example HR) from
+  // making another subject appear empty.
+  if(key === 'subject'){
+    activeFilters = {subject:val, diff:'All', type:'All'};
+    searchTerm = '';
+    const searchInput = document.querySelector('.search-box input');
+    if(searchInput) searchInput.value = '';
+    document.querySelectorAll(".filter-group").forEach(group => {
+      const label = group.querySelector('.filter-label');
+      if(label && (label.textContent === 'Difficulty' || label.textContent === 'Type')){
+        group.querySelectorAll('.filter-opt').forEach(button =>
+          button.classList.toggle('active', button.textContent.trim().startsWith('All'))
+        );
+      }
+    });
+  } else {
+    activeFilters[key] = val;
+  }
   el.closest('.filter-options').querySelectorAll('.filter-opt').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   // Reset and reload from API with new filters
@@ -947,6 +958,11 @@ function renderATSResult(data){
   document.getElementById('kw-score').textContent = kw;
   document.getElementById('kw-bar').style.width = kw + '%';
 
+  const groups = data.skill_groups || [];
+  document.getElementById('skills-coverage').innerHTML = groups.length
+    ? groups.map(g => `<span class="kw-chip found">${g.name}: ${g.found.length}/${g.total}</span>`).join('')
+    : '<span style="font-size:.82rem;color:var(--text3)">Skills coverage could not be calculated.</span>';
+
   // Missing keywords
   const missing = data.missing_keywords || [];
   document.getElementById('missing-kw-list').innerHTML = missing.length
@@ -1073,6 +1089,16 @@ const IV_QUESTION_POOL = {
     "What is the transformer architecture at a high level?",
     "How would you evaluate a text summarization model?"
   ],
+  CV:[
+    "What is the difference between image classification, object detection, and segmentation?",
+    "How would you improve a vision model that fails in low-light conditions?",
+    "What does intersection over union measure in object detection?"
+  ],
+  HR:[
+    "Tell me about yourself and the kind of role you are seeking.",
+    "Describe a project challenge and how you worked through it.",
+    "How do you respond when you receive constructive feedback?"
+  ],
   Mixed:[
     "What is the bias-variance tradeoff in machine learning?",
     "What is the vanishing gradient problem in deep networks and how do you address it?",
@@ -1100,6 +1126,8 @@ const IV_OPENERS = {
   Python:"Hi there! I am Aria and we are doing a Python round today. Here we go.",
   Stats:"Hello! I am Aria. We are covering Statistics today. Let us begin.",
   NLP:"Hi! I am Aria and this is an NLP round. Let us dive in.",
+  CV:"Hello! I am Aria. Today we are doing a Computer Vision round. Let us begin.",
+  HR:"Hello! I am Aria. This is an HR interview round. Let us start.",
   Mixed:"Hello! I am Aria. This is a mixed DS and AI round covering multiple subjects. Let us start."
 };
 
@@ -1124,8 +1152,8 @@ function shuffle(arr){
 
 // Persist a shuffled deck for each subject so sessions use unused questions
 // before cycling back to earlier ones.
-function nextInterviewQuestions(subject, count){
-  const pool=[...new Set(IV_QUESTION_POOL[subject]||IV_QUESTION_POOL.ML)];
+function nextInterviewQuestions(subject, count, sourcePool){
+  const pool=[...new Set(sourcePool||IV_QUESTION_POOL[subject]||IV_QUESTION_POOL.ML)];
   const key=`prepwise_interview_deck_${subject}`;
   let deck=[];
   try{deck=JSON.parse(localStorage.getItem(key)||'[]');}catch(e){deck=[];}
@@ -1145,6 +1173,22 @@ function nextInterviewQuestions(subject, count){
   return selected;
 }
 
+async function loadInterviewQuestionPool(subject){
+  // Use the full backend bank for each subject, not only the small built-in
+  // voice list. Mixed rounds keep their intentional cross-subject mix.
+  if(subject==='Mixed')return IV_QUESTION_POOL.Mixed;
+  try{
+    const res=await fetch(`${API}/questions/?subject=${encodeURIComponent(subject)}&limit=500&_=${Date.now()}`,{cache:'no-store'});
+    if(!res.ok)throw new Error('Question API unavailable');
+    const questions=await res.json();
+    const pool=questions.map(item=>item.text).filter(Boolean);
+    return pool.length?pool:(IV_QUESTION_POOL[subject]||IV_QUESTION_POOL.ML);
+  }catch(e){
+    console.warn('Using local interview fallback pool',e);
+    return IV_QUESTION_POOL[subject]||IV_QUESTION_POOL.ML;
+  }
+}
+
 // How many questions to ask per session (based on duration)
 function questionsForDuration(mins){
   if(mins<=5)return 3;
@@ -1158,6 +1202,9 @@ let ivQs=[];
 let ivIdx=0;
 let ivTimer=null;
 let ivSeconds=600;
+let interviewActive=false;
+let interviewTurn=0;
+let reportSaved=false;
 
 function selectSubject(el,sub){document.querySelectorAll('.subject-btn').forEach(b=>b.classList.remove('selected'));el.classList.add('selected');selectedSubject=sub;}
 
@@ -1173,11 +1220,17 @@ function updateTimer(){
   if(el) el.textContent=m+':'+s;
 }
 
-function startInterview(){
+async function startInterview(){
+  interviewActive=true;
+  interviewTurn++;
+  const startTurn=interviewTurn;
+  reportSaved=false;
   answerLog=[];
   const mins=parseInt(document.getElementById('iv-duration').value);
   const n=questionsForDuration(mins);
-  ivQs=nextInterviewQuestions(selectedSubject,n);
+  const questionPool=await loadInterviewQuestionPool(selectedSubject);
+  if(!interviewActive||startTurn!==interviewTurn)return;
+  ivQs=nextInterviewQuestions(selectedSubject,n,questionPool);
   ivIdx=0;
   ivSeconds=parseInt(document.getElementById('iv-duration').value)*60;
   document.getElementById('interview-setup').style.display='none';
@@ -1273,11 +1326,17 @@ let userAnswerBuffer='';
 let silenceTimer=null;
 let isListeningActive=false;
 
-function aiSpeak(text){
+function aiSpeak(text,listenAfter=true){
+  if(!interviewActive)return;
+  const speechTurn=interviewTurn;
   setVoiceState('speaking');
   showQuestion(text);
   updateTranscript('');
-  if(!window.speechSynthesis){addConvLog('ai',text);setTimeout(()=>afterAISpeaks(),2500);return;}
+  if(!window.speechSynthesis){
+    addConvLog('ai',text);
+    if(listenAfter)setTimeout(()=>{if(interviewActive&&speechTurn===interviewTurn)afterAISpeaks();},2500);
+    return;
+  }
   window.speechSynthesis.cancel();
   const utter=new SpeechSynthesisUtterance(text);
   utter.rate=0.92;utter.pitch=1.05;utter.volume=1;
@@ -1287,13 +1346,16 @@ function aiSpeak(text){
   for(const name of preferred){voice=voices.find(v=>v.name===name);if(voice)break;}
   if(!voice)voice=voices.find(v=>/female|woman/i.test(v.name));
   if(voice)utter.voice=voice;
-  utter.onend=()=>{addConvLog('ai',text);afterAISpeaks();};
-  utter.onerror=()=>{addConvLog('ai',text);afterAISpeaks();};
+  utter.onend=()=>{addConvLog('ai',text);if(listenAfter&&interviewActive&&speechTurn===interviewTurn)afterAISpeaks();};
+  utter.onerror=()=>{addConvLog('ai',text);if(listenAfter&&interviewActive&&speechTurn===interviewTurn)afterAISpeaks();};
   window.speechSynthesis.speak(utter);
 }
 
 function afterAISpeaks(){
+  if(!interviewActive)return;
+  const listeningTurn=interviewTurn;
   setTimeout(()=>{
+    if(!interviewActive||listeningTurn!==interviewTurn)return;
     setVoiceState('listening');
     userAnswerBuffer = '';
     updateTranscript('');
@@ -1302,6 +1364,7 @@ function afterAISpeaks(){
 }
 
 function startListening(){
+  if(!interviewActive)return;
   if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){
     showToast('Use Chrome for voice.','error');
     return;
@@ -1339,6 +1402,7 @@ function startListening(){
   recognition.onend = function(){
     isListeningActive = false;
     clearTimeout(silenceTimer);
+    if(!interviewActive)return;
     const answer = finalTranscript.trim();
     finalTranscript = '';
     userAnswerBuffer = '';
@@ -1433,6 +1497,41 @@ function evaluateAnswer(question, answer, subject){
   return Math.min(95, Math.max(0, Math.round(score)));
 }
 
+// A transparent heuristic for interview practice. It rewards relevant concepts
+// and clear explanations, so students can use their own wording. It does not
+// pretend to prove factual correctness from speech alone.
+function evaluateAnswerDetails(question, answer, subject){
+  const ans=answer.toLowerCase().trim();
+  const words=ans.split(/\s+/).filter(Boolean);
+  const pass=/^(i )?(don't|do not) know$|^(no idea|idk|pass|skip|not sure|i have no idea)$/i.test(ans);
+  if(pass||words.length<4)return {overall:3,technical:3,communication:5,depth:2,relevantTerms:0};
+
+  const concepts={
+    ML:['model','data','feature','training','validation','test','bias','variance','overfitting','underfitting','regularization','classification','regression','cluster','metric','precision','recall','f1','loss','gradient','tree','forest','boost','svm','margin','kernel','neighbour','centroid','pca','dimension'],
+    DL:['neural','network','layer','weight','gradient','backpropagation','activation','relu','sigmoid','dropout','normalization','convolution','filter','pooling','cnn','rnn','lstm','gru','attention','transformer','encoder','decoder','embedding','pretrained','transfer','optimizer','adam'],
+    DSA:['complexity','time','space','big o','array','linked','list','stack','queue','hash','tree','graph','node','edge','heap','sort','search','binary','recursion','dynamic','memoization','tabulation','bfs','dfs','dijkstra','pointer','window','greedy'],
+    Python:['list','tuple','dictionary','dict','set','function','class','object','decorator','generator','iterator','exception','context','thread','process','gil','async','await','memory','copy','mutable','immutable','comprehension'],
+    Stats:['mean','median','variance','standard deviation','distribution','probability','sample','population','hypothesis','p-value','confidence','correlation','causation','regression','bayesian','test','error','interval','significance'],
+    NLP:['text','token','embedding','vector','tf-idf','word','sentence','bert','gpt','transformer','attention','language','classification','entity','sentiment','prompt','retrieval','rag','generation','corpus','vocabulary'],
+    CV:['image','pixel','convolution','filter','feature','cnn','resnet','detection','bounding','box','segmentation','classification','yolo','iou','augmentation','camera','frame','transfer','pretrained','vision'],
+    Mixed:['model','data','algorithm','feature','training','gradient','network','classification','probability','complexity','embedding','attention']
+  };
+  const terms=concepts[subject]||concepts.Mixed;
+  const termHits=[...new Set(terms.filter(term=>ans.includes(term)))].length;
+  const qTokens=question.toLowerCase().match(/[a-z]{4,}/g)||[];
+  const ignored=new Set(['what','when','where','which','would','could','should','explain','describe','difference','between','does','with','from','that','this','your','give']);
+  const relevance=[...new Set(qTokens.filter(token=>!ignored.has(token)&&ans.includes(token)))].length;
+  const structure=['because','for example','for instance','first','then','therefore','however','whereas','trade-off','depends','used for','means that'];
+  const structureHits=structure.filter(term=>ans.includes(term)).length;
+  const hasExample=/\b(for example|for instance|such as|e\.g\.)\b/.test(ans);
+
+  const technical=Math.min(100,Math.round(12+termHits*12+relevance*8+(words.length>=20?8:0)));
+  const communication=Math.min(100,Math.round(20+Math.min(40,words.length*1.2)+structureHits*10+(ans.split(/[.!?]/).filter(Boolean).length>=2?8:0)));
+  const depth=Math.min(100,Math.round(8+termHits*11+structureHits*8+(hasExample?12:0)+(words.length>=45?10:0)));
+  const overall=Math.round(technical*.5+communication*.25+depth*.25);
+  return {overall,technical,communication,depth,relevantTerms:termHits+relevance};
+}
+
 function submitUserAnswer(text){
   if(!text || text.trim().length < 2) return;
   addConvLog('user', text);
@@ -1442,18 +1541,21 @@ function submitUserAnswer(text){
   isListeningActive = false;
   clearTimeout(silenceTimer);
   const currentQ = ivQs[ivIdx] || '';
-  const score = evaluateAnswer(currentQ, text.trim(), selectedSubject);
-  answerLog.push({question: currentQ, answer: text.trim(), score: score});
+  const evaluation = evaluateAnswerDetails(currentQ, text.trim(), selectedSubject);
+  const score = evaluation.overall;
+  answerLog.push({question: currentQ, answer: text.trim(), score: score, ...evaluation});
   console.log('Q'+ivIdx+' score:'+score+' words:'+text.trim().split(/\s+/).length);
   ivIdx++;
   updateQBadge();
   const feedback=interviewerFeedback(text.trim(),score);
+  const answerTurn=interviewTurn;
   setTimeout(function(){
+    if(!interviewActive||answerTurn!==interviewTurn)return;
     if(ivIdx < ivQs.length){
       const isLast=(ivIdx===ivQs.length-1);
       aiSpeak(`${feedback} ${isLast?'Last question. ':''}${ivQs[ivIdx]}`);
     } else {
-      aiSpeak("That was your final question. Generating your performance report now.");
+      aiSpeak("That was your final question. Generating your performance report now.",false);
       setTimeout(showReport,3500);
     }
   },1000);
@@ -1486,6 +1588,8 @@ function addConvLog(role,text){
 }
 
 function showReport(){
+  interviewActive=false;
+  interviewTurn++;
   clearInterval(ivTimer);
   if(window.speechSynthesis) window.speechSynthesis.cancel();
   if(answerLog.length === 0){ 
@@ -1499,9 +1603,32 @@ function showReport(){
     setVoiceState('idle');
     return;
   }
+
+  const average=key=>Math.round(answerLog.reduce((sum,item)=>sum+(item[key]||0),0)/answerLog.length);
+  const overall=average('overall');
+  const technical=average('technical');
+  const communication=average('communication');
+  const depth=average('depth');
+  document.getElementById('final-score').textContent=`${overall} / 100`;
+  if(document.getElementById('tech-score'))document.getElementById('tech-score').textContent=`${technical} / 100`;
+  if(document.getElementById('comm-score'))document.getElementById('comm-score').textContent=`${communication} / 100`;
+  if(document.getElementById('depth-score'))document.getElementById('depth-score').textContent=`${depth} / 100`;
+
+  let recommendation='Keep practising with specific examples and clear, structured explanations.';
+  const lowest=Math.min(technical,communication,depth);
+  if(lowest===technical)recommendation='Focus on naming the core concept, explaining how it works, and using accurate technical terms.';
+  else if(lowest===communication)recommendation='Use a simple structure: definition, how it works, then one example or trade-off.';
+  else recommendation='Add depth by explaining why the approach works, its trade-offs, and a practical example.';
+  if(document.getElementById('recommendation'))document.getElementById('recommendation').textContent=recommendation;
+  saveInterviewResult({overall,technical,communication,depth});
+  document.getElementById('report-wrap').classList.add('show');
+  document.getElementById('report-wrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+  setVoiceState('idle');
 }
 
 function endInterview(){
+  interviewActive=false;
+  interviewTurn++;
   clearInterval(ivTimer);
   if(window.speechSynthesis)window.speechSynthesis.cancel();
   if(recognition){recognition.stop();recognition=null;}
@@ -1513,6 +1640,8 @@ function endInterview(){
 }
 
 function resetInterview(){
+  interviewActive=false;
+  interviewTurn++;
   clearInterval(ivTimer);
   if(window.speechSynthesis)window.speechSynthesis.cancel();
   if(recognition){recognition.stop();recognition=null;}
@@ -1530,8 +1659,10 @@ function resetInterview(){
 // AUTH LAYER — Phase 3
 // ======================================================
 // Auto-detect: use Render backend in production, localhost in dev
-const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'http://127.0.0.1:8000'
+// A file opened directly from Windows has no hostname.  It is still a local
+// session, so use the locally-running API rather than the production URL.
+const API = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://127.0.0.1:8765'
   : 'https://prepwise-backend.onrender.com';
 
 // Token helpers
@@ -1542,6 +1673,50 @@ const Auth = {
   user(){ try{ return JSON.parse(localStorage.getItem('pw_user')); }catch(e){ return null; } },
   isLoggedIn(){ return !!this.token(); },
 };
+
+function dashboardEscape(text){
+  const el=document.createElement('span');
+  el.textContent=text;
+  return el.innerHTML;
+}
+
+async function loadDashboard(){
+  if(!Auth.isLoggedIn())return;
+  try{
+    const res=await fetch(`${API}/dashboard/summary`,{headers:{'Authorization':`Bearer ${Auth.token()}`},cache:'no-store'});
+    if(!res.ok)return;
+    const data=await res.json();
+    const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+    setText('dash-questions',data.questions_done||0);
+    setText('dash-questions-note',data.questions_done?`${data.questions_done} completed`: 'Start practising');
+    document.getElementById('dash-questions-bar').style.width=Math.min(100,(data.questions_done||0)/5)+'%';
+    setText('dash-sessions',data.interview_sessions||0);
+    setText('dash-sessions-note',data.interview_sessions?`${data.interview_sessions} completed`: 'Complete a voice interview');
+    document.getElementById('dash-sessions-bar').style.width=Math.min(100,(data.interview_sessions||0)*10)+'%';
+    setText('dash-streak',`${data.streak_days||0} 🔥`);
+    document.getElementById('dash-streak-bar').style.width=Math.min(100,(data.streak_days||0)*14)+'%';
+    if(data.latest_interview_score!==null&&data.latest_interview_score!==undefined){
+      document.getElementById('dash-score').innerHTML=`${data.latest_interview_score}<span style="font-size:1rem;color:var(--text3)">/100</span>`;
+      setText('dash-score-note',`${data.latest_interview_subject||'Interview'} round`);
+      document.getElementById('dash-score-bar').style.width=`${data.latest_interview_score}%`;
+    }
+    const activity=document.getElementById('dashboard-activity');
+    if(activity)activity.innerHTML=(data.activities||[]).length
+      ? data.activities.map((item,index)=>`<div class="report-row"${index===data.activities.length-1?' style="border:none"':''}><span class="label">${dashboardEscape(item.label)}</span><span class="chip ${item.kind==='interview'?'chip-red':'chip-purple'}">${dashboardEscape(item.value)}</span></div>`).join('')
+      : '<div class="report-row" style="border:none"><span class="label">No activity yet. Complete a question or interview to start your progress history.</span></div>';
+  }catch(e){ console.warn('Could not load dashboard progress',e); }
+}
+
+async function saveInterviewResult(scores){
+  if(!Auth.isLoggedIn()||reportSaved)return;
+  reportSaved=true;
+  try{
+    await fetch(`${API}/dashboard/interviews`,{
+      method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${Auth.token()}`},
+      body:JSON.stringify({subject:selectedSubject,overall_score:scores.overall,technical_score:scores.technical,communication_score:scores.communication,depth_score:scores.depth,duration_minutes:parseInt(document.getElementById('iv-duration').value)||0,conversation:answerLog.map(item=>({question:item.question,score:item.overall}))})
+    });
+  }catch(e){ reportSaved=false; console.warn('Could not save interview result',e); }
+}
 
 // Update nav + dashboard based on auth state
 function syncAuthUI(){
@@ -1703,6 +1878,7 @@ function showPage(name){
   const links=document.querySelectorAll('.nav-link');
   if(map[name]!==undefined)links[map[name]].classList.add('active');
   window.scrollTo(0,0);
+  if(name==='dashboard')loadDashboard();
   if(name==='questions'){ questionsLoaded=false; loadQuestionsFromAPI(); }
 }
 

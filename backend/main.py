@@ -9,7 +9,7 @@ from database import engine, Base
 
 import models  # noqa: F401
 
-from routers import auth, questions, ats
+from routers import auth, questions, ats, dashboard
 
 
 @asynccontextmanager
@@ -53,6 +53,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "null",  # permits opening PrepWise.html directly from File Explorer
         "http://localhost:8000",
         "http://localhost:5500",
         "http://127.0.0.1:5500",
@@ -66,6 +67,7 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(questions.router)
 app.include_router(ats.router)
+app.include_router(dashboard.router)
 
 # Serve PrepWise.html from one folder above backend/
 HTML_FILE = os.path.join(os.path.dirname(__file__), "..", "PrepWise.html")
