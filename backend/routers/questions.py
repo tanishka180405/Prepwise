@@ -40,6 +40,7 @@ def my_progress(
     return {"done_question_ids": [str(row[0]) for row in done_ids]}
 
 
+@router.get("", response_model=List[QuestionOut])
 @router.get("/", response_model=List[QuestionOut])
 def get_questions(
     subject: Optional[str] = Query(None),

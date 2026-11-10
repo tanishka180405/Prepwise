@@ -7,7 +7,6 @@ bcrypt
 python-multipart
 redis
 pymupdf
-spacy
 python-dotenv
 pydantic[email]
 pydantic-settings

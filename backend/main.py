@@ -50,15 +50,24 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+frontend_origins = [
+    origin.strip()
+    for origin in settings.FRONTEND_URL.split(",")
+    if origin.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "null",  # permits opening PrepWise.html directly from File Explorer
         "http://localhost:8000",
         "http://localhost:5500",
+        "http://localhost:8765",
         "http://127.0.0.1:5500",
-        settings.FRONTEND_URL,
+        "http://127.0.0.1:8765",
+        *frontend_origins,
     ],
+    allow_origin_regex=r"^https?://.*$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -69,14 +78,17 @@ app.include_router(questions.router)
 app.include_router(ats.router)
 app.include_router(dashboard.router)
 
-# Serve PrepWise.html from one folder above backend/
-HTML_FILE = os.path.join(os.path.dirname(__file__), "..", "PrepWise.html")
+# Serve Frontend (PrepWise.html or index.html)
+BASE_DIR = os.path.dirname(__file__)
+HTML_FILE = os.path.join(BASE_DIR, "..", "PrepWise.html")
+INDEX_FILE = os.path.join(BASE_DIR, "..", "index.html")
 
 @app.get("/", tags=["Frontend"])
 def serve_frontend():
-    if os.path.exists(HTML_FILE):
-        return FileResponse(HTML_FILE, media_type="text/html")
-    return {"error": "PrepWise.html not found. Place it one folder above backend/."}
+    for f in (HTML_FILE, INDEX_FILE):
+        if os.path.exists(f):
+            return FileResponse(f, media_type="text/html")
+    return {"error": "Frontend HTML file not found."}
 
 @app.get("/health", tags=["Health"])
 def health_check():

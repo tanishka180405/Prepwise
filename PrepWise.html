@@ -1658,12 +1658,30 @@ function resetInterview(){
 // ======================================================
 // AUTH LAYER — Phase 3
 // ======================================================
-// Auto-detect: use Render backend in production, localhost in dev
-// A file opened directly from Windows has no hostname.  It is still a local
-// session, so use the locally-running API rather than the production URL.
-const API = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'http://127.0.0.1:8765'
-  : 'https://prepwise-backend.onrender.com';
+// Auto-detect: custom backend URL, current origin, Render production, or local
+function getApiUrl() {
+  const custom = localStorage.getItem('pw_api_url') || window.PREPWISE_API_URL;
+  if (custom) return custom.replace(/\/$/, '');
+  const isLocal = window.location.protocol === 'file:' ||
+                  window.location.hostname === 'localhost' ||
+                  window.location.hostname === '127.0.0.1';
+  if (isLocal) return 'http://127.0.0.1:8765';
+  if (window.location.hostname.endsWith('.onrender.com') ||
+      window.location.hostname.endsWith('.koyeb.app') ||
+      window.location.hostname.endsWith('.railway.app')) {
+    return window.location.origin;
+  }
+  return 'https://prepwise-ai-interview-platform.onrender.com';
+}
+const API = getApiUrl();
+window.setBackendUrl = function(url) {
+  if (url) {
+    localStorage.setItem('pw_api_url', url.trim().replace(/\/$/, ''));
+  } else {
+    localStorage.removeItem('pw_api_url');
+  }
+  window.location.reload();
+};
 
 // Token helpers
 const Auth = {
